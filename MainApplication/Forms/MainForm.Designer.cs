@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ManagmentPanel = new DevExpress.Utils.Layout.StackPanel();
+            this.managmentSexLabel = new DevExpress.XtraEditors.LabelControl();
+            this.SelectedSexComboBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.ButtonUserGenerate = new DevExpress.XtraEditors.SimpleButton();
             this.MainPanel = new DevExpress.XtraEditors.XtraScrollableControl();
             this.BasicInfoPanel = new DevExpress.XtraEditors.PanelControl();
             this.copyAllBasic = new DevExpress.XtraEditors.SimpleButton();
@@ -43,31 +46,68 @@
             this.FirstNameLabel = new DevExpress.XtraEditors.LabelControl();
             this.SwitchBasicInfoPanel = new DevExpress.XtraEditors.CheckButton();
             this.FirstNameTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.SelectedSexComboBox = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.managmentSexLabel = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.ManagmentPanel)).BeginInit();
             this.ManagmentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).BeginInit();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BasicInfoPanel)).BeginInit();
             this.BasicInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FathersNameTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondNameTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FirstNameTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ManagmentPanel
             // 
             this.ManagmentPanel.Controls.Add(this.managmentSexLabel);
             this.ManagmentPanel.Controls.Add(this.SelectedSexComboBox);
-            this.ManagmentPanel.Controls.Add(this.simpleButton1);
+            this.ManagmentPanel.Controls.Add(this.ButtonUserGenerate);
             this.ManagmentPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ManagmentPanel.Location = new System.Drawing.Point(0, 0);
-            this.ManagmentPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ManagmentPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ManagmentPanel.Name = "ManagmentPanel";
             this.ManagmentPanel.Size = new System.Drawing.Size(1107, 39);
             this.ManagmentPanel.TabIndex = 4;
+            // 
+            // managmentSexLabel
+            // 
+            this.managmentSexLabel.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.managmentSexLabel.Appearance.Options.UseFont = true;
+            this.managmentSexLabel.Location = new System.Drawing.Point(4, 10);
+            this.managmentSexLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.managmentSexLabel.Name = "managmentSexLabel";
+            this.managmentSexLabel.Size = new System.Drawing.Size(101, 18);
+            this.managmentSexLabel.TabIndex = 1;
+            this.managmentSexLabel.Text = "Выберите пол:";
+            // 
+            // SelectedSexComboBox
+            // 
+            this.SelectedSexComboBox.EditValue = "Мужской";
+            this.SelectedSexComboBox.Location = new System.Drawing.Point(113, 7);
+            this.SelectedSexComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.SelectedSexComboBox.Name = "SelectedSexComboBox";
+            this.SelectedSexComboBox.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectedSexComboBox.Properties.Appearance.Options.UseFont = true;
+            this.SelectedSexComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SelectedSexComboBox.Properties.Items.AddRange(new object[] {
+            "Женский",
+            "Мужской"});
+            this.SelectedSexComboBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.SelectedSexComboBox.Size = new System.Drawing.Size(84, 24);
+            this.SelectedSexComboBox.TabIndex = 2;
+            // 
+            // ButtonUserGenerate
+            // 
+            this.ButtonUserGenerate.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonUserGenerate.Appearance.Options.UseFont = true;
+            this.ButtonUserGenerate.Location = new System.Drawing.Point(205, 6);
+            this.ButtonUserGenerate.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonUserGenerate.Name = "ButtonUserGenerate";
+            this.ButtonUserGenerate.Size = new System.Drawing.Size(206, 27);
+            this.ButtonUserGenerate.TabIndex = 3;
+            this.ButtonUserGenerate.Text = "Сгенерировать пользователя";
+            this.ButtonUserGenerate.Click += new System.EventHandler(this.ButtonUserGenerate_Click);
             // 
             // MainPanel
             // 
@@ -105,7 +145,7 @@
             this.copyAllBasic.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyAllBasic.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyAllBasic.Location = new System.Drawing.Point(1044, 40);
-            this.copyAllBasic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyAllBasic.Margin = new System.Windows.Forms.Padding(4);
             this.copyAllBasic.Name = "copyAllBasic";
             this.copyAllBasic.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyAllBasic.Size = new System.Drawing.Size(60, 33);
@@ -118,7 +158,7 @@
             this.copyButtonFathersName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonFathersName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonFathersName.Location = new System.Drawing.Point(784, 40);
-            this.copyButtonFathersName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyButtonFathersName.Margin = new System.Windows.Forms.Padding(4);
             this.copyButtonFathersName.Name = "copyButtonFathersName";
             this.copyButtonFathersName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonFathersName.Size = new System.Drawing.Size(39, 33);
@@ -131,7 +171,7 @@
             this.copyButtonSecondName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonSecondName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonSecondName.Location = new System.Drawing.Point(420, 40);
-            this.copyButtonSecondName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyButtonSecondName.Margin = new System.Windows.Forms.Padding(4);
             this.copyButtonSecondName.Name = "copyButtonSecondName";
             this.copyButtonSecondName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonSecondName.Size = new System.Drawing.Size(39, 33);
@@ -144,7 +184,7 @@
             this.copyButtonFirstName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonFirstName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonFirstName.Location = new System.Drawing.Point(63, 40);
-            this.copyButtonFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyButtonFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.copyButtonFirstName.Name = "copyButtonFirstName";
             this.copyButtonFirstName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonFirstName.Size = new System.Drawing.Size(39, 33);
@@ -214,11 +254,11 @@
             this.SwitchBasicInfoPanel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.SwitchBasicInfoPanel.ImageOptions.ImageToTextIndent = 10;
             this.SwitchBasicInfoPanel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.SwitchBasicInfoPanel.Location = new System.Drawing.Point(3, 2);
+            this.SwitchBasicInfoPanel.Location = new System.Drawing.Point(2, 2);
             this.SwitchBasicInfoPanel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Style3D;
             this.SwitchBasicInfoPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SwitchBasicInfoPanel.Name = "SwitchBasicInfoPanel";
-            this.SwitchBasicInfoPanel.Size = new System.Drawing.Size(1102, 30);
+            this.SwitchBasicInfoPanel.Size = new System.Drawing.Size(1103, 30);
             this.SwitchBasicInfoPanel.TabIndex = 0;
             this.SwitchBasicInfoPanel.Text = "Базовая информация";
             this.SwitchBasicInfoPanel.CheckedChanged += new System.EventHandler(this.switchBasicInfoPanel_CheckedChanged);
@@ -232,44 +272,6 @@
             this.FirstNameTextEdit.Properties.Appearance.Options.UseFont = true;
             this.FirstNameTextEdit.Size = new System.Drawing.Size(206, 26);
             this.FirstNameTextEdit.TabIndex = 2;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(228, 6);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(206, 27);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "Сгенерировать пользователя";
-            // 
-            // SelectedSexComboBox
-            // 
-            this.SelectedSexComboBox.EditValue = "Мужской";
-            this.SelectedSexComboBox.Location = new System.Drawing.Point(113, 7);
-            this.SelectedSexComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SelectedSexComboBox.Name = "SelectedSexComboBox";
-            this.SelectedSexComboBox.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedSexComboBox.Properties.Appearance.Options.UseFont = true;
-            this.SelectedSexComboBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SelectedSexComboBox.Properties.Items.AddRange(new object[] {
-            "Мужской",
-            "Женский"});
-            this.SelectedSexComboBox.Size = new System.Drawing.Size(107, 24);
-            this.SelectedSexComboBox.TabIndex = 1;
-            // 
-            // managmentSexLabel
-            // 
-            this.managmentSexLabel.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.managmentSexLabel.Appearance.Options.UseFont = true;
-            this.managmentSexLabel.Location = new System.Drawing.Point(4, 10);
-            this.managmentSexLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.managmentSexLabel.Name = "managmentSexLabel";
-            this.managmentSexLabel.Size = new System.Drawing.Size(101, 18);
-            this.managmentSexLabel.TabIndex = 2;
-            this.managmentSexLabel.Text = "Выберите пол:";
             // 
             // MainForm
             // 
@@ -291,6 +293,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ManagmentPanel)).EndInit();
             this.ManagmentPanel.ResumeLayout(false);
             this.ManagmentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).EndInit();
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BasicInfoPanel)).EndInit();
             this.BasicInfoPanel.ResumeLayout(false);
@@ -298,7 +301,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.FathersNameTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SecondNameTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FirstNameTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,6 +323,6 @@
         private DevExpress.XtraEditors.TextEdit FirstNameTextEdit;
         private DevExpress.XtraEditors.LabelControl managmentSexLabel;
         private DevExpress.XtraEditors.ComboBoxEdit SelectedSexComboBox;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton ButtonUserGenerate;
     }
 }

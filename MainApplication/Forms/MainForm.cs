@@ -40,5 +40,23 @@ namespace MainApplication.Forms
             }
             this.ActiveControl = null;
         }
+
+        private void ButtonUserGenerate_Click(object sender, System.EventArgs e)
+        {
+            //Get collection where sex is selected
+            switch (SelectedSexComboBox.SelectedItem.ToString())
+            {
+                case "Мужской":
+                    {
+
+                    }
+                    break;
+                case "Женский":
+                    {
+
+                    }
+                    break;
+            }
+        }
     }
 }
