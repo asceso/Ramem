@@ -65,7 +65,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Source\FirstNames.json" />
+    <None Include="Source\FirstNames.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseCreating\DatabaseCreating.csproj">

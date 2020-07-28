@@ -11,5 +11,6 @@ namespace DatabaseCreating.Entities
         public Guid ID { get; set; }
         public string FirstNameValue { get; set; }
         public bool IsMale { get; set; }
+        public string Genesis { get; set; }
     }
 }
