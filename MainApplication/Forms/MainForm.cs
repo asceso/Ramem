@@ -1,5 +1,4 @@
-﻿using DatabaseLibrary;
-using DatabaseLibrary.Entities;
+﻿using DatabaseCreating;
 using DevExpress.XtraEditors;
 using System.Collections.Generic;
 using System.Data.Entity;
