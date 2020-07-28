@@ -1,16 +1,12 @@
 ﻿using DatabaseLibrary.Entities;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DatabaseLibrary
 {
     public class DataContext : DbContext
     {
-        public DataContext() : base("name=DatabaseContext")
+        public DataContext() : base("name=DatabaseConnection")
         {
         }
         public DbSet<FirstName> FirstNames { get; set; }

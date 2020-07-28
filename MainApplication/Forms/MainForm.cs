@@ -1,5 +1,4 @@
-﻿using DatabaseLibrary;
-using DatabaseLibrary.Entities;
+﻿using DatabaseCreating;
 using DevExpress.XtraEditors;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -39,6 +38,24 @@ namespace MainApplication.Forms
                     break;
             }
             this.ActiveControl = null;
+        }
+
+        private void ButtonUserGenerate_Click(object sender, System.EventArgs e)
+        {
+            //Get collection where sex is selected
+            switch (SelectedSexComboBox.SelectedItem.ToString())
+            {
+                case "Мужской":
+                    {
+
+                    }
+                    break;
+                case "Женский":
+                    {
+
+                    }
+                    break;
+            }
         }
     }
 }
