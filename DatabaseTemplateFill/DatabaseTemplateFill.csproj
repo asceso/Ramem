@@ -65,6 +65,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Source\FirstNames.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseCreating\DatabaseCreating.csproj">
@@ -72,9 +73,7 @@
       <Name>DatabaseCreating</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
