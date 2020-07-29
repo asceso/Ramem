@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202007281608384_InitialData.designer.cs">
       <DependentUpon>202007281608384_InitialData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007290901085_AddGenesisInFirstNames.cs" />
+    <Compile Include="Migrations\202007290901085_AddGenesisInFirstNames.designer.cs">
+      <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007281608384_InitialData.resx">
       <DependentUpon>202007281608384_InitialData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007290901085_AddGenesisInFirstNames.resx">
+      <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
