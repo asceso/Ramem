@@ -10,6 +10,5 @@ namespace DatabaseCreating.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ID { get; set; }
         public string SecondNameValue { get; set; }
-        public bool IsMale { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace DatabaseTemplateFill
                     using (StreamReader sr = new StreamReader(file))
                     {
                         buffer = sr.ReadToEnd();
-                        Console.WriteLine("Received FirstNames.");
+                        Console.WriteLine($"Received {file.Replace(Environment.CurrentDirectory,"")}.");
                     }
                     firstNames.AddRange(JsonConvert.DeserializeObject<FirstNameModel[]>(buffer));
                     foreach (FirstNameModel item in firstNames)
@@ -68,7 +68,7 @@ namespace DatabaseTemplateFill
             //SecondNames
             try
             {
-                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\SecondNames.json"))
+                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\Source\\SecondNames\\SecondNames.json"))
                 {
                     buffer = sr.ReadToEnd();
                     Console.WriteLine("Received SecondNames.");
@@ -80,8 +80,7 @@ namespace DatabaseTemplateFill
                         continue;
                     db.SecondNames.Add(new SecondName
                     {
-                        SecondNameValue = item.SecondNameValue,
-                        IsMale = item.IsMale
+                        SecondNameValue = item.SecondNameValue
                     });
                     counter++;
                 }

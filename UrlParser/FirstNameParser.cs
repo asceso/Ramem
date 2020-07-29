@@ -60,14 +60,13 @@ namespace UrlParser
                 Console.WriteLine("model created.");
             }
         }
-        public FirstNameModel[] GetParsed(string url,bool isMale,string OutputName)
+        public void GetParsed(string url,bool isMale,string OutputName)
         {
             IsReady = false;
             Console.WriteLine($"Start parsing url: {url}");
             Parsing(url);
             while (!IsReady) ;
             CreatingModels(isMale,OutputName);
-            return models.ToArray();
         }
     }
 }

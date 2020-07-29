@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DatabaseTemplateFill.Models
 {
-    class SecondNameModel
+    public class SecondNameModel
     {
         public string SecondNameValue { get; set; }
-        public bool IsMale { get; set; }
     }
 }
