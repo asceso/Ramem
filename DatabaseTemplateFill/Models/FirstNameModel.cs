@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseTemplateFill.Models
 {
-    class FirstNameModel
+    public class FirstNameModel
     {
         public string FirstNameValue { get; set; }
         public bool IsMale { get; set; }
+        public string Genesis { get; set; }
     }
 }

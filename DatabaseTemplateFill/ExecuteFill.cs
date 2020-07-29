@@ -34,25 +34,30 @@ namespace DatabaseTemplateFill
             //FirstNames
             try
             {
-                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\FirstNames.json"))
+                string[] fileList = Directory.GetFiles($"{Environment.CurrentDirectory}\\Source\\FirstNames\\", "*.json");
+                foreach (var file in fileList)
                 {
-                    buffer = sr.ReadToEnd();
-                    Console.WriteLine("Received FirstNames.");
-                }
-                firstNames.AddRange(JsonConvert.DeserializeObject<FirstNameModel[]>(buffer));
-                foreach (FirstNameModel item in firstNames)
-                {
-                    if (db.FirstNames.Any(x => x.FirstNameValue == item.FirstNameValue))
-                        continue;
-                    db.FirstNames.Add(new FirstName
+                    using (StreamReader sr = new StreamReader(file))
                     {
-                        FirstNameValue = item.FirstNameValue,
-                        IsMale = item.IsMale
-                    });
-                    counter++;
+                        buffer = sr.ReadToEnd();
+                        Console.WriteLine("Received FirstNames.");
+                    }
+                    firstNames.AddRange(JsonConvert.DeserializeObject<FirstNameModel[]>(buffer));
+                    foreach (FirstNameModel item in firstNames)
+                    {
+                        if (db.FirstNames.Any(x => x.FirstNameValue == item.FirstNameValue))
+                            continue;
+                        db.FirstNames.Add(new FirstName
+                        {
+                            FirstNameValue = item.FirstNameValue,
+                            IsMale = item.IsMale,
+                            Genesis = item.Genesis
+                        });
+                        counter++;
+                    }
+                    db.SaveChanges();
+                    Console.WriteLine($"{counter} FirstNames added to Database");
                 }
-                db.SaveChanges();
-                Console.WriteLine($"{counter} FirstNames added to Database");
                 counter = 0;
             }
             catch (Exception ex)
