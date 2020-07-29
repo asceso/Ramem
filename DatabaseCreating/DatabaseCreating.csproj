@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202007290901085_AddGenesisInFirstNames.designer.cs">
       <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007291941440_DeleteIsMaleSecondNames.cs" />
+    <Compile Include="Migrations\202007291941440_DeleteIsMaleSecondNames.designer.cs">
+      <DependentUpon>202007291941440_DeleteIsMaleSecondNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007290901085_AddGenesisInFirstNames.resx">
       <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291941440_DeleteIsMaleSecondNames.resx">
+      <DependentUpon>202007291941440_DeleteIsMaleSecondNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
