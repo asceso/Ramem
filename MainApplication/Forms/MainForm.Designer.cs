@@ -157,6 +157,7 @@
             // 
             // copyAllBasic
             // 
+            this.copyAllBasic.Enabled = false;
             this.copyAllBasic.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyAllBasic.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyAllBasic.Location = new System.Drawing.Point(1044, 40);
@@ -167,9 +168,11 @@
             this.copyAllBasic.TabIndex = 10;
             this.copyAllBasic.Tag = "Copy";
             this.copyAllBasic.ToolTip = "Скопировать Ф.И.О.";
+            this.copyAllBasic.Click += new System.EventHandler(this.copyButtonClick);
             // 
             // copyButtonFathersName
             // 
+            this.copyButtonFathersName.Enabled = false;
             this.copyButtonFathersName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonFathersName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonFathersName.Location = new System.Drawing.Point(784, 40);
@@ -178,11 +181,13 @@
             this.copyButtonFathersName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonFathersName.Size = new System.Drawing.Size(39, 33);
             this.copyButtonFathersName.TabIndex = 9;
-            this.copyButtonFathersName.Tag = "Copy";
+            this.copyButtonFathersName.Tag = "Copy, FathersName";
             this.copyButtonFathersName.ToolTip = "Скопировать отчество";
+            this.copyButtonFathersName.Click += new System.EventHandler(this.copyButtonClick);
             // 
             // copyButtonSecondName
             // 
+            this.copyButtonSecondName.Enabled = false;
             this.copyButtonSecondName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonSecondName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonSecondName.Location = new System.Drawing.Point(420, 40);
@@ -191,11 +196,13 @@
             this.copyButtonSecondName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonSecondName.Size = new System.Drawing.Size(39, 33);
             this.copyButtonSecondName.TabIndex = 8;
-            this.copyButtonSecondName.Tag = "Copy";
+            this.copyButtonSecondName.Tag = "Copy, SecondName";
             this.copyButtonSecondName.ToolTip = "Скопировать фамилию";
+            this.copyButtonSecondName.Click += new System.EventHandler(this.copyButtonClick);
             // 
             // copyButtonFirstName
             // 
+            this.copyButtonFirstName.Enabled = false;
             this.copyButtonFirstName.ImageOptions.Image = global::MainApplication.Properties.Resources.merge_32x32;
             this.copyButtonFirstName.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.copyButtonFirstName.Location = new System.Drawing.Point(63, 40);
@@ -204,8 +211,9 @@
             this.copyButtonFirstName.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.copyButtonFirstName.Size = new System.Drawing.Size(39, 33);
             this.copyButtonFirstName.TabIndex = 7;
-            this.copyButtonFirstName.Tag = "Copy";
+            this.copyButtonFirstName.Tag = "Copy, FirstName";
             this.copyButtonFirstName.ToolTip = "Скопировать имя";
+            this.copyButtonFirstName.Click += new System.EventHandler(this.copyButtonClick);
             // 
             // FarhersNameLabel
             // 
@@ -227,6 +235,8 @@
             this.FathersNameTextEdit.Properties.Appearance.Options.UseFont = true;
             this.FathersNameTextEdit.Size = new System.Drawing.Size(206, 26);
             this.FathersNameTextEdit.TabIndex = 6;
+            this.FathersNameTextEdit.Tag = "FathersName";
+            this.FathersNameTextEdit.TextChanged += new System.EventHandler(this.TextEdit_TextChanged);
             // 
             // SecondNameLabel
             // 
@@ -248,6 +258,8 @@
             this.SecondNameTextEdit.Properties.Appearance.Options.UseFont = true;
             this.SecondNameTextEdit.Size = new System.Drawing.Size(206, 26);
             this.SecondNameTextEdit.TabIndex = 4;
+            this.SecondNameTextEdit.Tag = "SecondName";
+            this.SecondNameTextEdit.TextChanged += new System.EventHandler(this.TextEdit_TextChanged);
             // 
             // FirstNameLabel
             // 
@@ -287,6 +299,8 @@
             this.FirstNameTextEdit.Properties.Appearance.Options.UseFont = true;
             this.FirstNameTextEdit.Size = new System.Drawing.Size(206, 26);
             this.FirstNameTextEdit.TabIndex = 2;
+            this.FirstNameTextEdit.Tag = "FirstName";
+            this.FirstNameTextEdit.TextChanged += new System.EventHandler(this.TextEdit_TextChanged);
             // 
             // MainForm
             // 
