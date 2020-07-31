@@ -42,6 +42,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -54,13 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext.cs" />
+    <Compile Include="Entities\DataContext.cs" />
     <Compile Include="Entities\FirstName.cs" />
     <Compile Include="Entities\SecondName.cs" />
     <Compile Include="ExecuteCreating.cs" />
-    <Compile Include="Migrations\202007311825003_InitialCreate.cs" />
-    <Compile Include="Migrations\202007311825003_InitialCreate.designer.cs">
-      <DependentUpon>202007311825003_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202007312232290_InitialCreate.cs" />
+    <Compile Include="Migrations\202007312232290_InitialCreate.designer.cs">
+      <DependentUpon>202007312232290_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,12 +73,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007311825003_InitialCreate.resx">
-      <DependentUpon>202007311825003_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Scripts\202007312232290_InitialCreate.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Migrations.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\InitialCreate.sql" />
+    <ProjectReference Include="..\BusinesLogic\BusinesLogic.csproj">
+      <Project>{64729421-7DC1-4D82-ADE4-6E3CF5BC461E}</Project>
+      <Name>BusinesLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202007312232290_InitialCreate.resx">
+      <DependentUpon>202007312232290_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

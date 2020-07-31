@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExecuteFill.cs" />
-    <Compile Include="Models\FathersNameModel.cs" />
     <Compile Include="Models\FirstNameModel.cs" />
     <Compile Include="Models\SecondNameModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinesLogic\BusinesLogic.csproj">
+      <Project>{64729421-7DC1-4D82-ADE4-6E3CF5BC461E}</Project>
+      <Name>BusinesLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseCreating\DatabaseCreating.csproj">
       <Project>{DEC7ED73-BAE4-4C2A-8A75-B9404CA131D9}</Project>
       <Name>DatabaseCreating</Name>

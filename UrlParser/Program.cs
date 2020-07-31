@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UrlParser.Parsers;
 
 namespace UrlParser
 {
@@ -64,8 +61,11 @@ namespace UrlParser
             firstNames.GetParsed(@"https://abvgdee.ru/imena/zhenskie/na-bukvu-yu", false, "FirstNamesFemaleYU.json");
             firstNames.GetParsed(@"https://abvgdee.ru/imena/zhenskie/na-bukvu-ya", false, "FirstNamesFemaleYA.json");
             #endregion
+
             SecondNamesParser secondNames = new SecondNamesParser();
             secondNames.GetParsed(@"https://wiki-linki.ru/Page/108504", "SecondNames.json");
+
+            //Sucess
             Console.WriteLine("Parsed success press any key to exit");
             Console.ReadKey();
         }

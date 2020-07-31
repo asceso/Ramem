@@ -1,4 +1,5 @@
-﻿using DatabaseCreating;
+﻿using BusinesLogic.LogicClasses;
+using BusinesLogic.LogicModels;
 using DatabaseCreating.Entities;
 using DevExpress.XtraEditors;
 using System;
@@ -16,14 +17,19 @@ namespace MainApplication.Forms
         DataContext db;
         List<FirstName> firstNamesFromDb = new List<FirstName>(); 
         List<SecondName> secondNamesFromDb = new List<SecondName>();
+        ApplicationSettingsModel settings;
         int RulesCount = 6;
         #endregion
         #region Loading Form and data // Загрузка формы и данных из БД
         public MainForm()
         {
+            settings = SettingsLogic.ReadConfiguration();
+            string conString = $"Data Source={settings.ConnectionString.DataSource}" +
+            $"AttachDbFilename = {settings.ConnectionString.AttachDbFilename}" +
+            $"Integrated Security = {settings.ConnectionString.IntegratedSecurity}";
             InitializeComponent();
             LoadIndicator.Show();
-            db = new DataContext();
+            db = new DataContext(conString);
             Thread getData = new Thread(GetDataFromDb);
             getData.Start();
         }

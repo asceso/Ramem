@@ -1,10 +1,10 @@
-﻿using DatabaseCreating;
+﻿using BusinesLogic.LogicClasses;
+using BusinesLogic.LogicModels;
 using DatabaseCreating.Entities;
 using DatabaseTemplateFill.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 
@@ -12,20 +12,32 @@ namespace DatabaseTemplateFill
 {
     class ExecuteFill
     {
+        #region Fields // Поля
         DataContext db;
         List<FirstNameModel> firstNames = new List<FirstNameModel>();
         List<SecondNameModel> secondNames = new List<SecondNameModel>();
-        List<FathersNameModel> fathersNames = new List<FathersNameModel>();
+        ApplicationSettingsModel settings = SettingsLogic.ReadConfiguration();
+        #endregion
+
+        #region Ctor // Конструктор класса и метод Main
         static void Main(string[] args)
         {
             ExecuteFill execute = new ExecuteFill();
         }
         public ExecuteFill()
         {
-            db = new DataContext();
+            string conString = $"Data Source={settings.ConnectionString.DataSource}" +
+            $"AttachDbFilename = {settings.ConnectionString.AttachDbFilename}" +
+            $"Integrated Security = {settings.ConnectionString.IntegratedSecurity}";
+            db = new DataContext(conString);
             System.Console.WriteLine("Reading Json...");
             ReadSource();
         }
+        #endregion
+
+        /// <summary>
+        /// Чтение файлов из папки Output
+        /// </summary>
         private void ReadSource()
         {
             int counter = 0;
@@ -34,7 +46,7 @@ namespace DatabaseTemplateFill
             //FirstNames
             try
             {
-                string[] fileList = Directory.GetFiles($"{Environment.CurrentDirectory}\\Source\\FirstNames\\", "*.json");
+                string[] fileList = Directory.GetFiles($"{Environment.CurrentDirectory}\\Output\\FirstNames\\", "*.json");
                 foreach (var file in fileList)
                 {
                     using (StreamReader sr = new StreamReader(file))
@@ -68,7 +80,7 @@ namespace DatabaseTemplateFill
             //SecondNames
             try
             {
-                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\Source\\SecondNames\\SecondNames.json"))
+                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\Output\\SecondNames\\SecondNames.json"))
                 {
                     buffer = sr.ReadToEnd();
                     Console.WriteLine("Received SecondNames.");
@@ -86,35 +98,6 @@ namespace DatabaseTemplateFill
                 }
                 db.SaveChanges();
                 Console.WriteLine($"{counter} SecondNames added to Database");
-                counter = 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            //FathersName
-            try
-            {
-                using (StreamReader sr = new StreamReader($"{Environment.CurrentDirectory}\\FathersNames.json"))
-                {
-                    buffer = sr.ReadToEnd();
-                    Console.WriteLine("Received FathersNames.");
-                }
-                fathersNames.AddRange(JsonConvert.DeserializeObject<FathersNameModel[]>(buffer));
-                foreach (FathersNameModel item in fathersNames)
-                {
-                    if (db.FathersNames.Any(x => x.FathersNameValue == item.FathersNameValue))
-                        continue;
-                    db.FathersNames.Add(new FathersName
-                    {
-                        FathersNameValue = item.FathersNameValue,
-                        IsMale = item.IsMale
-                    });
-                    counter++;
-                }
-                db.SaveChanges();
-                Console.WriteLine($"{counter} FathersNames added to Database");
                 counter = 0;
             }
             catch (Exception ex)
