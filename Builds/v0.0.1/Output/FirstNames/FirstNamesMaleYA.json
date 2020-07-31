@@ -1,0 +1,27 @@
+[
+  {
+    "FirstNameValue": "Яков",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Ян",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Янислав",
+    "IsMale": true,
+    "Genesis": "Старославянские"
+  },
+  {
+    "FirstNameValue": "Яромир",
+    "IsMale": true,
+    "Genesis": "Старославянские"
+  },
+  {
+    "FirstNameValue": "Ярослав",
+    "IsMale": true,
+    "Genesis": "Старославянские"
+  }
+]

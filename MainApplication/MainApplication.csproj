@@ -153,18 +153,20 @@
       <Project>{DEC7ED73-BAE4-4C2A-8A75-B9404CA131D9}</Project>
       <Name>DatabaseCreating</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseTemplateFill\DatabaseTemplateFill.csproj">
+      <Project>{7367a0f8-b6f2-438d-9000-e538b505ae68}</Project>
+      <Name>DatabaseTemplateFill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UrlParser\UrlParser.csproj">
+      <Project>{d436620b-e11d-401e-a302-72ac434a3bc1}</Project>
+      <Name>UrlParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\indic.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\DataMember.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\DataMember_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DataMember.mdf</DependentUpon>
-    </Content>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

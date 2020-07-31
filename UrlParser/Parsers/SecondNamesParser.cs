@@ -47,11 +47,19 @@ namespace UrlParser.Parsers
             {
                 models.Add(new SecondNameModel { SecondNameValue = famElements[i] });
             }
-            using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\Output\\SecondNames\\" + OutputName))
+            try
             {
-                string json = JsonConvert.SerializeObject(models, Formatting.Indented);
-                sw.WriteLine(json);
-                Console.WriteLine("model created.");
+                using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\Output\\SecondNames\\" + OutputName))
+                {
+                    string json = JsonConvert.SerializeObject(models, Formatting.Indented);
+                    sw.WriteLine(json);
+                    Console.WriteLine("model created.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+                Console.ReadKey();
             }
         }
         public void GetParsed(string url, string OutputName)

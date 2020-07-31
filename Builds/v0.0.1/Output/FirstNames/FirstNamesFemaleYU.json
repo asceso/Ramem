@@ -1,0 +1,22 @@
+[
+  {
+    "FirstNameValue": "Юлиана",
+    "IsMale": false,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Юлианна",
+    "IsMale": false,
+    "Genesis": "Латинские"
+  },
+  {
+    "FirstNameValue": "Юлия",
+    "IsMale": false,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Юнона",
+    "IsMale": false,
+    "Genesis": "Латинские"
+  }
+]

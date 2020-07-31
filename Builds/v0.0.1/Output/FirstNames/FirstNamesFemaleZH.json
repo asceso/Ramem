@@ -1,0 +1,17 @@
+[
+  {
+    "FirstNameValue": "Жанна",
+    "IsMale": false,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Жасмин",
+    "IsMale": false,
+    "Genesis": "Арабские"
+  },
+  {
+    "FirstNameValue": "Жозефина",
+    "IsMale": false,
+    "Genesis": "Тюркские"
+  }
+]
