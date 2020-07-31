@@ -26,11 +26,11 @@ namespace DatabaseCreating
             Console.WriteLine("Finded: " + (fileList.Length-1).ToString() + " scripts.");
             Console.WriteLine("Preparing to execute...");
             SqlConnection connection = new SqlConnection(conString);
+            connection.Open();
             try
             {
-                connection.Open();
                 string scriptText = File.ReadAllText($"{Environment.CurrentDirectory}\\Scripts\\Migrations.sql");
-                SqlDataReader reader = new SqlCommand(scriptText, connection).ExecuteReader();
+                SqlDataReader reader = new SqlCommand(scriptText).ExecuteReader();
                 List<string> data = new List<string>();
                 while (reader.Read())
                 {

@@ -55,11 +55,19 @@ namespace UrlParser.Parsers
                     IsMale = isMale
                 });
             }
-            using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\Output\\FirstNames\\"+ OutputName))
+            try
             {
-                string json = JsonConvert.SerializeObject(models,Formatting.Indented);
-                sw.WriteLine(json);
-                Console.WriteLine("model created.");
+                using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\Output\\FirstNames\\" + OutputName))
+                {
+                    string json = JsonConvert.SerializeObject(models, Formatting.Indented);
+                    sw.WriteLine(json);
+                    Console.WriteLine("model created.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR: {ex.Message}");
+                Console.ReadKey();
             }
         }
         public void GetParsed(string url,bool isMale,string OutputName)
