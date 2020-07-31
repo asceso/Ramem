@@ -33,6 +33,7 @@
             this.managmentSexLabel = new DevExpress.XtraEditors.LabelControl();
             this.SelectedSexComboBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.ButtonUserGenerate = new DevExpress.XtraEditors.SimpleButton();
+            this.LoadIndicator = new System.Windows.Forms.PictureBox();
             this.MainPanel = new DevExpress.XtraEditors.XtraScrollableControl();
             this.BasicInfoPanel = new DevExpress.XtraEditors.PanelControl();
             this.copyAllBasic = new DevExpress.XtraEditors.SimpleButton();
@@ -49,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ManagmentPanel)).BeginInit();
             this.ManagmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LoadIndicator)).BeginInit();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BasicInfoPanel)).BeginInit();
             this.BasicInfoPanel.SuspendLayout();
@@ -62,6 +64,7 @@
             this.ManagmentPanel.Controls.Add(this.managmentSexLabel);
             this.ManagmentPanel.Controls.Add(this.SelectedSexComboBox);
             this.ManagmentPanel.Controls.Add(this.ButtonUserGenerate);
+            this.ManagmentPanel.Controls.Add(this.LoadIndicator);
             this.ManagmentPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ManagmentPanel.Location = new System.Drawing.Point(0, 0);
             this.ManagmentPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -101,6 +104,7 @@
             // 
             this.ButtonUserGenerate.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonUserGenerate.Appearance.Options.UseFont = true;
+            this.ButtonUserGenerate.Enabled = false;
             this.ButtonUserGenerate.Location = new System.Drawing.Point(205, 6);
             this.ButtonUserGenerate.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonUserGenerate.Name = "ButtonUserGenerate";
@@ -108,6 +112,17 @@
             this.ButtonUserGenerate.TabIndex = 3;
             this.ButtonUserGenerate.Text = "Сгенерировать пользователя";
             this.ButtonUserGenerate.Click += new System.EventHandler(this.ButtonUserGenerate_Click);
+            // 
+            // LoadIndicator
+            // 
+            this.LoadIndicator.Image = ((System.Drawing.Image)(resources.GetObject("LoadIndicator.Image")));
+            this.LoadIndicator.Location = new System.Drawing.Point(418, 4);
+            this.LoadIndicator.Name = "LoadIndicator";
+            this.LoadIndicator.Size = new System.Drawing.Size(30, 30);
+            this.LoadIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LoadIndicator.TabIndex = 4;
+            this.LoadIndicator.TabStop = false;
+            this.LoadIndicator.Visible = false;
             // 
             // MainPanel
             // 
@@ -294,6 +309,7 @@
             this.ManagmentPanel.ResumeLayout(false);
             this.ManagmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelectedSexComboBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LoadIndicator)).EndInit();
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BasicInfoPanel)).EndInit();
             this.BasicInfoPanel.ResumeLayout(false);
@@ -324,5 +340,6 @@
         private DevExpress.XtraEditors.LabelControl managmentSexLabel;
         private DevExpress.XtraEditors.ComboBoxEdit SelectedSexComboBox;
         private DevExpress.XtraEditors.SimpleButton ButtonUserGenerate;
+        private System.Windows.Forms.PictureBox LoadIndicator;
     }
 }

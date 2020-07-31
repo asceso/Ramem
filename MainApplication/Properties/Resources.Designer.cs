@@ -63,6 +63,16 @@ namespace MainApplication.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap indic {
+            get {
+                object obj = ResourceManager.GetObject("indic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap merge_32x32 {
             get {
                 object obj = ResourceManager.GetObject("merge_32x32", resourceCulture);

@@ -47,6 +47,8 @@ namespace UrlParser
             models = new List<FirstNameModel>();
             for (int i = 0; i < table.Count; i+=3)
             {
+                if (table[i].Contains(';') || table[i].Contains('(') || table[i].Contains(')'))
+                    continue;
                 models.Add(new FirstNameModel{
                     FirstNameValue = table[i],
                     Genesis = table[i + 2],
