@@ -1,13 +1,11 @@
 ﻿using DatabaseCreating;
 using DatabaseCreating.Entities;
-using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MainApplication.Forms

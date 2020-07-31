@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,21 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Entities\FathersName.cs" />
     <Compile Include="Entities\FirstName.cs" />
     <Compile Include="Entities\SecondName.cs" />
     <Compile Include="ExecuteCreating.cs" />
-    <Compile Include="Migrations\202007281608384_InitialData.cs" />
-    <Compile Include="Migrations\202007281608384_InitialData.designer.cs">
-      <DependentUpon>202007281608384_InitialData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007290901085_AddGenesisInFirstNames.cs" />
-    <Compile Include="Migrations\202007290901085_AddGenesisInFirstNames.designer.cs">
-      <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291941440_DeleteIsMaleSecondNames.cs" />
-    <Compile Include="Migrations\202007291941440_DeleteIsMaleSecondNames.designer.cs">
-      <DependentUpon>202007291941440_DeleteIsMaleSecondNames.cs</DependentUpon>
+    <Compile Include="Migrations\202007311825003_InitialCreate.cs" />
+    <Compile Include="Migrations\202007311825003_InitialCreate.designer.cs">
+      <DependentUpon>202007311825003_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,15 +70,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007281608384_InitialData.resx">
-      <DependentUpon>202007281608384_InitialData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007311825003_InitialCreate.resx">
+      <DependentUpon>202007311825003_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007290901085_AddGenesisInFirstNames.resx">
-      <DependentUpon>202007290901085_AddGenesisInFirstNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291941440_DeleteIsMaleSecondNames.resx">
-      <DependentUpon>202007291941440_DeleteIsMaleSecondNames.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\InitialCreate.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
