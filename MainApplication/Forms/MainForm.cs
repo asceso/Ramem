@@ -1,5 +1,6 @@
 ﻿using DatabaseCreating;
 using DatabaseCreating.Entities;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MainApplication.Forms
 {
@@ -18,7 +20,6 @@ namespace MainApplication.Forms
         List<SecondName> secondNamesFromDb = new List<SecondName>();
         int RulesCount = 6;
         #endregion
-        //List<FathersName> fathersNamesFromDb; 
         #region Loading Form and data // Загрузка формы и данных из БД
         public MainForm()
         {
@@ -233,8 +234,23 @@ namespace MainApplication.Forms
         //Кнопка копировать
         private void copyButtonClick(object sender, System.EventArgs e)
         {
-            if ((sender is SimpleButton simpleButton) && simpleButton.Tag.Equals("Copy"))
+            if ((sender is SimpleButton simpleButton) && simpleButton.Tag.ToString().Contains("Copy"))
             {
+                switch (simpleButton.Name)
+                {
+                    case "copyButtonFirstName":
+                            Clipboard.SetText(FirstNameTextEdit.Text);
+                        break;
+                    case "copyButtonSecondName":
+                            Clipboard.SetText(SecondNameTextEdit.Text);
+                        break;
+                    case "copyButtonFathersName":
+                        Clipboard.SetText(FathersNameTextEdit.Text);
+                        break;
+                    case "copyAllBasic":
+                        Clipboard.SetText($"{FirstNameTextEdit.Text} {SecondNameTextEdit.Text} {FathersNameTextEdit.Text}");
+                        break;
+                }
                 this.ActiveControl = null;
             }
         }
@@ -255,6 +271,30 @@ namespace MainApplication.Forms
                     break;
             }
             this.ActiveControl = null;
+        }
+        #endregion
+        #region Events // События
+        //Смена текста в базовом инфо
+        private void TextEdit_TextChanged(object sender, EventArgs e)
+        {
+            //Кнопка ФИО
+            if (!string.IsNullOrWhiteSpace(FirstNameTextEdit.Text) &&
+                !string.IsNullOrWhiteSpace(SecondNameTextEdit.Text) &&
+                !string.IsNullOrWhiteSpace(FathersNameTextEdit.Text))
+                copyAllBasic.Enabled = true;
+            else
+                copyAllBasic.Enabled = false;
+            //Кнопки Ф.. И.. О..
+            if (sender is TextEdit edit)
+            {
+                var buttons = BasicInfoPanel.Controls.OfType<SimpleButton>();
+                foreach (SimpleButton button in buttons)
+                {
+                    if (button.Tag == null) continue;
+                    if (!button.Tag.ToString().Contains(edit.Tag.ToString())) continue;
+                    button.Enabled = string.IsNullOrWhiteSpace(edit.Text) ? false : true;
+                }
+            }
         }
         #endregion
     }
