@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppSettingsForm));
+            this.SuspendLayout();
+            // 
+            // AppSettingsForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "AppSettingsForm";
+            this.ClientSize = new System.Drawing.Size(637, 417);
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("AppSettingsForm.IconOptions.Icon")));
+            this.Name = "AppSettingsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Настройки приложения";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

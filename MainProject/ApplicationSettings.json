@@ -2,7 +2,7 @@
   "ConnectionString": {
     "ConnectionName": "DatabaseConnection",
     "DataSource": "(LocalDB)\\MSSQLLocalDB;",
-    "AttachDbFilename": "D:\\Programming\\Repository\\Ramem\\MainApplication\\Data\\DataMember.mdf;",
+    "AttachDbFilename": "D:\\Programming\\Repository\\Ramem\\MainProject\\Data\\Data.mdf;",
     "IntegratedSecurity": true,
     "ProviderName": "System.Data.SqlClient"
   }
