@@ -27,17 +27,17 @@ namespace DatabaseCreating
             Console.WriteLine("Preparing to execute...");
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
+            Console.WriteLine("SQL Connection is opened.");
             try
             {
                 string scriptText = File.ReadAllText($"{Environment.CurrentDirectory}\\Scripts\\Migrations.sql");
-                SqlDataReader reader = new SqlCommand(scriptText).ExecuteReader();
+                SqlDataReader reader = new SqlCommand(scriptText, connection).ExecuteReader();
                 List<string> data = new List<string>();
                 while (reader.Read())
                 {
                     data.Add(reader.GetValue(0).ToString());
                 }
                 string[] MigrationsInDB = data.ToArray();
-                Console.WriteLine("SQL Connection is opened.");
                 foreach (string script in fileList)
                 {
                     if (script.Contains("Migrations.sql")) continue;
