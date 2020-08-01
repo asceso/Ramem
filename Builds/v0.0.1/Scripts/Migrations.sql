@@ -1,1 +1,0 @@
-﻿SELECT [__MigrationHistory].[MigrationId] FROM [dbo].[__MigrationHistory];
