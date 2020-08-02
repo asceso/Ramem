@@ -1,0 +1,37 @@
+[
+  {
+    "FirstNameValue": "Яна",
+    "IsMale": false,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Янина",
+    "IsMale": false,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Ярина",
+    "IsMale": false,
+    "Genesis": "Старославянские"
+  },
+  {
+    "FirstNameValue": "Ярослава",
+    "IsMale": false,
+    "Genesis": "Старославянские"
+  },
+  {
+    "FirstNameValue": "Ярославна",
+    "IsMale": false,
+    "Genesis": "Старославянские"
+  },
+  {
+    "FirstNameValue": "Ясмина",
+    "IsMale": false,
+    "Genesis": "Арабские"
+  },
+  {
+    "FirstNameValue": "Ясна",
+    "IsMale": false,
+    "Genesis": "Старославянские"
+  }
+]

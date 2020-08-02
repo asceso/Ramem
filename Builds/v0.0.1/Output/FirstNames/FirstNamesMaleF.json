@@ -1,0 +1,62 @@
+[
+  {
+    "FirstNameValue": "Фадей",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Фарид",
+    "IsMale": true,
+    "Genesis": "Арабские"
+  },
+  {
+    "FirstNameValue": "Федор",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Федот",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Феликс",
+    "IsMale": true,
+    "Genesis": "Латинские"
+  },
+  {
+    "FirstNameValue": "Феофан",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Филарет",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Филат",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Филимон",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Филипп",
+    "IsMale": true,
+    "Genesis": "Греческие"
+  },
+  {
+    "FirstNameValue": "Фома",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Фрол",
+    "IsMale": true,
+    "Genesis": "Старославянские"
+  }
+]

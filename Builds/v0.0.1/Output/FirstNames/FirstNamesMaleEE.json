@@ -1,0 +1,67 @@
+[
+  {
+    "FirstNameValue": "Эдвин",
+    "IsMale": true,
+    "Genesis": "Германские"
+  },
+  {
+    "FirstNameValue": "Эдгар",
+    "IsMale": true,
+    "Genesis": "Германские"
+  },
+  {
+    "FirstNameValue": "Эдуард",
+    "IsMale": true,
+    "Genesis": "Германские"
+  },
+  {
+    "FirstNameValue": "Элайджа",
+    "IsMale": true,
+    "Genesis": "Английские"
+  },
+  {
+    "FirstNameValue": "Эллиот",
+    "IsMale": true,
+    "Genesis": "Скандинавские"
+  },
+  {
+    "FirstNameValue": "Эльдар",
+    "IsMale": true,
+    "Genesis": "Скандинавские"
+  },
+  {
+    "FirstNameValue": "Эльмир",
+    "IsMale": true,
+    "Genesis": "Тюркские"
+  },
+  {
+    "FirstNameValue": "Эмиль",
+    "IsMale": true,
+    "Genesis": "Латинские"
+  },
+  {
+    "FirstNameValue": "Эмин",
+    "IsMale": true,
+    "Genesis": "Арабские"
+  },
+  {
+    "FirstNameValue": "Эммануил",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Эммануэль",
+    "IsMale": true,
+    "Genesis": "Еврейские"
+  },
+  {
+    "FirstNameValue": "Эрик",
+    "IsMale": true,
+    "Genesis": "Германские"
+  },
+  {
+    "FirstNameValue": "Эрнест",
+    "IsMale": true,
+    "Genesis": "Германские"
+  }
+]
