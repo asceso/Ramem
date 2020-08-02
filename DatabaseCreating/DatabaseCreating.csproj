@@ -57,10 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateDatabase.cs" />
     <Compile Include="Entities\DataContext.cs" />
     <Compile Include="Entities\FirstName.cs" />
     <Compile Include="Entities\SecondName.cs" />
-    <Compile Include="ExecuteCreating.cs" />
+    <Compile Include="ConsoleProgram.cs" />
     <Compile Include="Migrations\202007312232290_InitialCreate.cs" />
     <Compile Include="Migrations\202007312232290_InitialCreate.designer.cs">
       <DependentUpon>202007312232290_InitialCreate.cs</DependentUpon>

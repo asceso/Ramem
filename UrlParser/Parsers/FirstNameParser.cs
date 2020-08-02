@@ -12,10 +12,13 @@ namespace UrlParser.Parsers
 {
     class FirstNameParser
     {
+        #region Fields // Поля
         List<string> table;
         List<FirstNameModel> models;
         string request;
         bool IsReady = false;
+        #endregion
+        #region Parse and Create model // Методы парсинга и создания модели
         async void Parsing(string url)
         {
             table = new List<string>();
@@ -57,7 +60,10 @@ namespace UrlParser.Parsers
             }
             try
             {
-                using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "\\Output\\FirstNames\\" + OutputName))
+                string directoryPath = Environment.CurrentDirectory + "\\Output\\FirstNames\\";
+                if (!Directory.Exists(directoryPath))
+                    Directory.CreateDirectory(directoryPath);
+                using (StreamWriter sw = new StreamWriter(directoryPath + OutputName))
                 {
                     string json = JsonConvert.SerializeObject(models, Formatting.Indented);
                     sw.WriteLine(json);
@@ -70,6 +76,8 @@ namespace UrlParser.Parsers
                 Console.ReadKey();
             }
         }
+        #endregion
+        #region Run parsing // Запуск парсера
         public void GetParsed(string url,bool isMale,string OutputName)
         {
             IsReady = false;
@@ -78,5 +86,6 @@ namespace UrlParser.Parsers
             while (!IsReady) ;
             CreatingModels(isMale,OutputName);
         }
+        #endregion
     }
 }

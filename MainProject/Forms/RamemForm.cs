@@ -1,4 +1,5 @@
 ﻿using BusinesLogic.LogicClasses;
+using BusinesLogic.LogicInterfaces;
 using BusinesLogic.LogicModels;
 using DatabaseCreating.Entities;
 using DevExpress.XtraEditors;
@@ -11,22 +12,22 @@ using System.Windows.Forms;
 
 namespace MainProject.Forms
 {
-    public partial class RamemForm : XtraForm
+    public partial class RamemForm : XtraForm , ISettingsInterface
     {
         #region Fields // Поля
         DataContext db;
         List<FirstName> firstNamesFromDb = new List<FirstName>();
         List<SecondName> secondNamesFromDb = new List<SecondName>();
-        ApplicationSettingsModel settings;
+        public ApplicationSettingsModel Settings { get; set; }
         int RulesCount = 6;
         #endregion
         #region Loading Form and data // Загрузка формы и данных из БД
         public RamemForm()
         {
-            settings = SettingsLogic.ReadConfiguration();
-            string conString = $"Data Source={settings.ConnectionString.DataSource}" +
-            $"AttachDbFilename = {settings.ConnectionString.AttachDbFilename}" +
-            $"Integrated Security = {settings.ConnectionString.IntegratedSecurity}";
+            Settings = SettingsLogic.ReadConfiguration();
+            string conString = $"Data Source={Settings.ConnectionString.DataSource}" +
+            $"AttachDbFilename = {Settings.ConnectionString.AttachDbFilename}" +
+            $"Integrated Security = {Settings.ConnectionString.IntegratedSecurity}";
             InitializeComponent();
             LoadIndicator.Show();
             db = new DataContext(conString);
