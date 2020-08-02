@@ -101,5 +101,8 @@
   <ItemGroup>
     <None Include="Resources\RandomSettings.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wifi_16x16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

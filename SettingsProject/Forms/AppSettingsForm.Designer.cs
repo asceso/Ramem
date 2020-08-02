@@ -32,7 +32,8 @@
             this.SettingsManagmentPanel = new DevExpress.Utils.Layout.StackPanel();
             this.ButtonSaveSettings = new DevExpress.XtraEditors.SimpleButton();
             this.SettingsViewPanel = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.ConnectionPanel = new DevExpress.XtraEditors.PanelControl();
+            this.ButtonTestConnection = new DevExpress.XtraEditors.SimpleButton();
             this.DataProviderComboEdit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.PasswordEdit = new DevExpress.XtraEditors.TextEdit();
             this.LoginEdit = new DevExpress.XtraEditors.TextEdit();
@@ -52,8 +53,8 @@
             this.SettingsManagmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsViewPanel)).BeginInit();
             this.SettingsViewPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectionPanel)).BeginInit();
+            this.ConnectionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataProviderComboEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LoginEdit.Properties)).BeginInit();
@@ -86,36 +87,49 @@
             // 
             // SettingsViewPanel
             // 
-            this.SettingsViewPanel.Controls.Add(this.panelControl1);
+            this.SettingsViewPanel.Controls.Add(this.ConnectionPanel);
             this.SettingsViewPanel.Controls.Add(this.progressPanel);
             this.SettingsViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SettingsViewPanel.Location = new System.Drawing.Point(0, 38);
             this.SettingsViewPanel.Name = "SettingsViewPanel";
-            this.SettingsViewPanel.Size = new System.Drawing.Size(522, 170);
+            this.SettingsViewPanel.Size = new System.Drawing.Size(522, 202);
             this.SettingsViewPanel.TabIndex = 1;
             // 
-            // panelControl1
+            // ConnectionPanel
             // 
-            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelControl1.Controls.Add(this.DataProviderComboEdit);
-            this.panelControl1.Controls.Add(this.PasswordEdit);
-            this.panelControl1.Controls.Add(this.LoginEdit);
-            this.panelControl1.Controls.Add(this.CheckeditAuth);
-            this.panelControl1.Controls.Add(this.ButtonOpenDirectoryDialog);
-            this.panelControl1.Controls.Add(this.DataPathEdit);
-            this.panelControl1.Controls.Add(this.DataSourceComboEdit);
-            this.panelControl1.Controls.Add(this.ConnectionNameEdit);
-            this.panelControl1.Controls.Add(this.labelControl7);
-            this.panelControl1.Controls.Add(this.labelControl6);
-            this.panelControl1.Controls.Add(this.labelControl5);
-            this.panelControl1.Controls.Add(this.labelControl3);
-            this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(2, 2);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(518, 141);
-            this.panelControl1.TabIndex = 1;
+            this.ConnectionPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.ConnectionPanel.Controls.Add(this.ButtonTestConnection);
+            this.ConnectionPanel.Controls.Add(this.DataProviderComboEdit);
+            this.ConnectionPanel.Controls.Add(this.PasswordEdit);
+            this.ConnectionPanel.Controls.Add(this.LoginEdit);
+            this.ConnectionPanel.Controls.Add(this.CheckeditAuth);
+            this.ConnectionPanel.Controls.Add(this.ButtonOpenDirectoryDialog);
+            this.ConnectionPanel.Controls.Add(this.DataPathEdit);
+            this.ConnectionPanel.Controls.Add(this.DataSourceComboEdit);
+            this.ConnectionPanel.Controls.Add(this.ConnectionNameEdit);
+            this.ConnectionPanel.Controls.Add(this.labelControl7);
+            this.ConnectionPanel.Controls.Add(this.labelControl6);
+            this.ConnectionPanel.Controls.Add(this.labelControl5);
+            this.ConnectionPanel.Controls.Add(this.labelControl3);
+            this.ConnectionPanel.Controls.Add(this.labelControl2);
+            this.ConnectionPanel.Controls.Add(this.labelControl1);
+            this.ConnectionPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ConnectionPanel.Location = new System.Drawing.Point(2, 2);
+            this.ConnectionPanel.Name = "ConnectionPanel";
+            this.ConnectionPanel.Size = new System.Drawing.Size(518, 171);
+            this.ConnectionPanel.TabIndex = 1;
+            // 
+            // ButtonTestConnection
+            // 
+            this.ButtonTestConnection.ImageOptions.Image = global::SettingsProject.Properties.Resources.wifi_16x16;
+            this.ButtonTestConnection.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.ButtonTestConnection.ImageOptions.ImageToTextIndent = 10;
+            this.ButtonTestConnection.Location = new System.Drawing.Point(5, 141);
+            this.ButtonTestConnection.Name = "ButtonTestConnection";
+            this.ButtonTestConnection.Size = new System.Drawing.Size(508, 23);
+            this.ButtonTestConnection.TabIndex = 15;
+            this.ButtonTestConnection.Text = "Проверить соединение";
+            this.ButtonTestConnection.Click += new System.EventHandler(this.ButtonTestConnection_Click);
             // 
             // DataProviderComboEdit
             // 
@@ -257,7 +271,7 @@
             this.progressPanel.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.progressPanel.Description = "";
             this.progressPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressPanel.Location = new System.Drawing.Point(2, 153);
+            this.progressPanel.Location = new System.Drawing.Point(2, 185);
             this.progressPanel.LookAndFeel.SkinName = "Office 2016 Colorful";
             this.progressPanel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this.progressPanel.Name = "progressPanel";
@@ -272,7 +286,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 208);
+            this.ClientSize = new System.Drawing.Size(522, 240);
             this.Controls.Add(this.SettingsViewPanel);
             this.Controls.Add(this.SettingsManagmentPanel);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
@@ -285,9 +299,9 @@
             this.SettingsManagmentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsViewPanel)).EndInit();
             this.SettingsViewPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectionPanel)).EndInit();
+            this.ConnectionPanel.ResumeLayout(false);
+            this.ConnectionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataProviderComboEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LoginEdit.Properties)).EndInit();
@@ -304,7 +318,7 @@
         private DevExpress.Utils.Layout.StackPanel SettingsManagmentPanel;
         private DevExpress.XtraEditors.SimpleButton ButtonSaveSettings;
         private DevExpress.XtraEditors.PanelControl SettingsViewPanel;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl ConnectionPanel;
         private DevExpress.XtraWaitForm.ProgressPanel progressPanel;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -320,5 +334,6 @@
         private DevExpress.XtraEditors.TextEdit LoginEdit;
         private DevExpress.XtraEditors.CheckEdit CheckeditAuth;
         private DevExpress.XtraEditors.TextEdit PasswordEdit;
+        private DevExpress.XtraEditors.SimpleButton ButtonTestConnection;
     }
 }

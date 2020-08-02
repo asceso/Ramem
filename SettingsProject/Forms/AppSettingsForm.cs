@@ -3,6 +3,9 @@ using BusinesLogic.LogicInterfaces;
 using BusinesLogic.LogicModels;
 using DevExpress.XtraEditors;
 using System;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SettingsProject.Forms
@@ -11,16 +14,27 @@ namespace SettingsProject.Forms
     {
         #region Fields
         public ApplicationSettingsModel Settings { get; set; }
-        bool IsModified;
+        bool[] IsModified;
+        enum Modify
+        {
+            ConnectionName,
+            DataSource,
+            AttachDbFilename,
+            IntegratedSecurity,
+            ProviderName,
+            Login,
+            Password
+        }
         #endregion
         #region Ctor and Load // Конструктор и метод загрузки
         public AppSettingsForm()
         {
+            int ModifyCount = Enum.GetNames(typeof(Modify)).Length;
+            IsModified = new bool[ModifyCount];
             InitializeComponent();
             progressPanel.Show();
             Settings = SettingsLogic.ReadConfiguration();
             FillSettingsFields();
-            IsModified = false;
             progressPanel.Hide();
         }
         #endregion
@@ -42,12 +56,12 @@ namespace SettingsProject.Forms
                     }
                     break;
             }
-            IsModified = (CheckeditAuth.Checked != Settings.ConnectionString.IntegratedSecurity && IsModified) ? true : false;
+            IsModified[(int)Modify.IntegratedSecurity] = (CheckeditAuth.Checked != Settings.ConnectionString.IntegratedSecurity) ? true : false;
             ToggleSaveButtonEnabled();
         }
         private void ToggleSaveButtonEnabled()
         {
-            if (IsModified)
+            if (IsModified.Any(b => b == true))
                 ButtonSaveSettings.Enabled = true;
             else
                 ButtonSaveSettings.Enabled = false;
@@ -58,10 +72,10 @@ namespace SettingsProject.Forms
             switch (edit.Name)
             {
                 case nameof(DataSourceComboEdit):
-                        IsModified = (edit.SelectedItem.ToString() != Settings.ConnectionString.DataSource && IsModified) ? true : false;
+                        IsModified[(int)Modify.DataSource] = (edit.SelectedItem.ToString() != Settings.ConnectionString.DataSource) ? true : false;
                     break;
                 case nameof(DataProviderComboEdit):
-                        IsModified = (edit.SelectedItem.ToString() != Settings.ConnectionString.ProviderName && IsModified) ? true : false;
+                        IsModified[(int)Modify.ProviderName] = (edit.SelectedItem.ToString() != Settings.ConnectionString.ProviderName) ? true : false;
                     break;
             }
             ToggleSaveButtonEnabled();
@@ -72,20 +86,40 @@ namespace SettingsProject.Forms
             switch (edit.Name)
             {
                 case nameof(ConnectionNameEdit):
-                        IsModified = (edit.Text != Settings.ConnectionString.ConnectionName && IsModified) ? true : false;
+                    IsModified[(int)Modify.ConnectionName] = (edit.Text != Settings.ConnectionString.ConnectionName) ? true : false;
                     break;
                 case nameof(DataPathEdit):
-                    IsModified = (edit.Text != Settings.ConnectionString.AttachDbFilename && IsModified) ? true : false;
+                    IsModified[(int)Modify.AttachDbFilename] = (edit.Text != Settings.ConnectionString.AttachDbFilename) ? true : false;
                     break;
                     // Todo: Доработать аутентификацию
                     //case nameof(LoginEdit):
-                    //    IsModified = (edit.Text != settings.ConnectionString.Login  && IsModified) ? true : false;
+                    //    IsModified[(int)Modify.Login] = (edit.Text != settings.ConnectionString.Login) ? true : false;
                     //    break;
                     //case nameof(PasswordEdit):
-                    //    IsModified = (edit.Text != settings.ConnectionString.Password  && IsModified) ? true : false;
+                    //    IsModified[(int)Modify.Password = (edit.Text != settings.ConnectionString.Password) ? true : false;
                     //    break;
             }
             ToggleSaveButtonEnabled();
+        }
+        async private Task TestSqlConnection(string ConnectionStringProperty)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionStringProperty);
+            try
+            {
+                await connection.OpenAsync();
+                MessageBox.Show($"Подключение выполнено успешно", "Успех",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Во время подключения к серверу произошла ошибка\n{ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
         }
         private void FillSettingsFields()
         {
@@ -131,6 +165,22 @@ namespace SettingsProject.Forms
                 MessageBox.Show("Во время сохранения xml конфигурации произошла ошибка\n" + ex.Message,
                     "Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+        async private void ButtonTestConnection_Click(object sender, EventArgs e)
+        {
+            string ConnectionStringProperty = $"Data Source={DataSourceComboEdit.SelectedItem}" +
+                $"AttachDbFilename = {DataPathEdit.Text}" +
+                $"Integrated Security = {CheckeditAuth.Checked}";
+            progressPanel.Show();
+            switch (DataProviderComboEdit.SelectedItem.ToString())
+            {
+                case "System.Data.SqlClient":
+                    {
+                        await TestSqlConnection(ConnectionStringProperty);
+                    }
+                    break;
+            }
+            progressPanel.Hide();
         }
         #endregion
     }
