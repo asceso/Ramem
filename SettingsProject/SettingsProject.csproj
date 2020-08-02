@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>RandomSettings.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\RandomSettings.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -89,7 +89,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RandomSettings.ico" />
     <None Include="Resources\opendoc_16x16.png" />
     <None Include="Resources\save_16x16.png" />
   </ItemGroup>
@@ -98,6 +97,9 @@
       <Project>{64729421-7DC1-4D82-ADE4-6E3CF5BC461E}</Project>
       <Name>BusinesLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RandomSettings.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
