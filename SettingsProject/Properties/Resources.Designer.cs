@@ -63,6 +63,26 @@ namespace SettingsProject.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap apply_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("apply_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("close_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap opendoc_16x16 {
             get {
                 object obj = ResourceManager.GetObject("opendoc_16x16", resourceCulture);

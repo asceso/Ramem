@@ -318,7 +318,7 @@
             this.Name = "RamemForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Генератор личностей";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RamemFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ManagmentPanel)).EndInit();
             this.ManagmentPanel.ResumeLayout(false);
             this.ManagmentPanel.PerformLayout();

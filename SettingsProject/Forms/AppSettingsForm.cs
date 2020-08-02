@@ -2,8 +2,10 @@
 using BusinesLogic.LogicInterfaces;
 using BusinesLogic.LogicModels;
 using DevExpress.XtraEditors;
+using SettingsProject.Properties;
 using System;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +21,8 @@ namespace SettingsProject.Forms
         {
             ConnectionName,
             DataSource,
-            AttachDbFilename,
+            DataPath,
+            DataName,
             IntegratedSecurity,
             ProviderName,
             Login,
@@ -38,7 +41,30 @@ namespace SettingsProject.Forms
             progressPanel.Hide();
         }
         #endregion
+        #region Methods // Методы
+        async private Task TestSqlConnection(string ConnectionStringProperty)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionStringProperty);
+            try
+            {
+                await connection.OpenAsync();
+                MessageBox.Show($"Подключение выполнено успешно", "Успех",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Во время подключения к серверу произошла ошибка\n{ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+        }
+        #endregion
         #region Events // События
+        #region Value changed // Изменение полей
         private void CheckeditAuth_CheckedChanged(object sender, EventArgs e)
         {
             switch (CheckeditAuth.Checked)
@@ -58,13 +84,6 @@ namespace SettingsProject.Forms
             }
             IsModified[(int)Modify.IntegratedSecurity] = (CheckeditAuth.Checked != Settings.ConnectionString.IntegratedSecurity) ? true : false;
             ToggleSaveButtonEnabled();
-        }
-        private void ToggleSaveButtonEnabled()
-        {
-            if (IsModified.Any(b => b == true))
-                ButtonSaveSettings.Enabled = true;
-            else
-                ButtonSaveSettings.Enabled = false;
         }
         private void SelectedIndexChangedEvent(object sender, EventArgs e)
         {
@@ -89,7 +108,21 @@ namespace SettingsProject.Forms
                     IsModified[(int)Modify.ConnectionName] = (edit.Text != Settings.ConnectionString.ConnectionName) ? true : false;
                     break;
                 case nameof(DataPathEdit):
-                    IsModified[(int)Modify.AttachDbFilename] = (edit.Text != Settings.ConnectionString.AttachDbFilename) ? true : false;
+                    {
+                        string DataPath = Settings.ConnectionString.AttachDbFilename
+                            .Remove(Settings.ConnectionString.AttachDbFilename.LastIndexOf("\\") + 1);
+                        IsModified[(int)Modify.DataPath] = (edit.Text != DataPath) ? true : false;
+                        ToggleCheckConnection();
+                    }
+                    break;
+                case nameof(DataNameEdit):
+                    {
+                        string DataName = Settings.ConnectionString.AttachDbFilename
+                            .Remove(0, Settings.ConnectionString.AttachDbFilename.LastIndexOf("\\") + 1)
+                            .Replace(".mdf;", string.Empty);
+                        IsModified[(int)Modify.DataName] = (edit.Text != DataName) ? true : false;
+                        ToggleCheckConnection();
+                    }
                     break;
                     // Todo: Доработать аутентификацию
                     //case nameof(LoginEdit):
@@ -101,31 +134,30 @@ namespace SettingsProject.Forms
             }
             ToggleSaveButtonEnabled();
         }
-        async private Task TestSqlConnection(string ConnectionStringProperty)
+        #endregion
+        #region Toggle // Переключение кнопок
+        private void ToggleSaveButtonEnabled()
         {
-            SqlConnection connection = new SqlConnection(ConnectionStringProperty);
-            try
-            {
-                await connection.OpenAsync();
-                MessageBox.Show($"Подключение выполнено успешно", "Успех",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Во время подключения к серверу произошла ошибка\n{ex.Message}", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                connection.Close();
-                connection.Dispose();
-            }
+            ButtonSaveSettings.Enabled = IsModified.Any(b => b == true) ? true : false;
         }
+        private void ToggleCheckConnection()
+        {
+            ButtonTestConnection.Enabled = File.Exists($"{DataPathEdit.Text}\\{DataNameEdit.Text}.mdf") ? true : false;
+            CheckDatabaseImage.Image = ButtonTestConnection.Enabled ? Resources.apply_16x16 : Resources.close_16x16;
+        }
+        #endregion
+        #region Fill // Заполнения
         private void FillSettingsFields()
         {
             ConnectionNameEdit.Text = Settings.ConnectionString.ConnectionName;
             DataSourceComboEdit.SelectedItem = Settings.ConnectionString.DataSource;
-            DataPathEdit.Text = Settings.ConnectionString.AttachDbFilename;
+            string DataName = Settings.ConnectionString.AttachDbFilename
+                .Remove(0, Settings.ConnectionString.AttachDbFilename.LastIndexOf("\\")+1)
+                .Replace(".mdf;",string.Empty);
+            string DataPath = Settings.ConnectionString.AttachDbFilename
+                .Remove(Settings.ConnectionString.AttachDbFilename.LastIndexOf("\\") + 1);
+            DataPathEdit.Text = DataPath;
+            DataNameEdit.Text = DataName;
             CheckeditAuth.Checked = Settings.ConnectionString.IntegratedSecurity;
             DataProviderComboEdit.SelectedItem = Settings.ConnectionString.ProviderName;
         }
@@ -133,21 +165,25 @@ namespace SettingsProject.Forms
         {
             Settings.ConnectionString.ConnectionName = ConnectionNameEdit.Text;
             Settings.ConnectionString.DataSource = DataSourceComboEdit.SelectedItem.ToString();
-            Settings.ConnectionString.AttachDbFilename = DataPathEdit.Text;
+            Settings.ConnectionString.AttachDbFilename = $"{DataPathEdit.Text}\\{DataNameEdit.Text}.mdf;";
             Settings.ConnectionString.IntegratedSecurity = CheckeditAuth.Checked;
             Settings.ConnectionString.ProviderName = DataProviderComboEdit.SelectedItem.ToString();
         }
         #endregion
+        #endregion
         #region Buttons // Кнопки
         private void ButtonOpenDirectoryDialog_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.InitialDirectory = Environment.CurrentDirectory;
-            openFile.Filter = "Database files|*.mdf";
-            if (openFile.ShowDialog() == DialogResult.OK)
+            FolderBrowserDialog openFolder = new FolderBrowserDialog();
+            if (openFolder.ShowDialog() == DialogResult.OK)
             {
-                DataPathEdit.Text = openFile.FileName+";";
+                DataPathEdit.Text = openFolder.SelectedPath;
             }
+            //openFile.Filter = "Database files|*.mdf";
+            //if (openFile.ShowDialog() == DialogResult.OK)
+            //{
+            //    DataPathEdit.Text = openFile.FileName+";";
+            //}
         }
         private void ButtonSaveSettings_Click(object sender, EventArgs e)
         {

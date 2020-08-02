@@ -3,8 +3,10 @@ using BusinesLogic.LogicInterfaces;
 using BusinesLogic.LogicModels;
 using DatabaseCreating.Entities;
 using DevExpress.XtraEditors;
+using SettingsProject.Forms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -32,14 +34,54 @@ namespace MainProject.Forms
             LoadIndicator.Show();
             db = new DataContext(conString);
             Thread getData = new Thread(GetDataFromDb);
-            getData.Start();
+            try
+            {
+                getData.Start();
+            }
+            catch (InvalidOperationException)
+            {
+                throw;
+            }
         }
         private void GetDataFromDb()
         {
-            firstNamesFromDb.AddRange(db.FirstNames);
-            secondNamesFromDb.AddRange(db.SecondNames);
+            try
+            {
+                firstNamesFromDb.AddRange(db.FirstNames);
+                secondNamesFromDb.AddRange(db.SecondNames);
+                if (firstNamesFromDb.Count==0 || secondNamesFromDb.Count==0)
+                    this.Invoke(new Action(()=>AskForData()));
+            }
+            catch (InvalidOperationException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка\n{ex.Message}","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
             ButtonUserGenerate.Invoke(new Action(() => { ButtonUserGenerate.Enabled = true; }));
             LoadIndicator.Invoke(new Action(() => { LoadIndicator.Hide(); }));
+        }
+        private void AskForData()
+        {
+                if (MessageBox.Show("База данных не содержит в себе значения или не существует. Открыть настройки?", "База пустая",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    #if DEBUG
+                    AppSettingsForm settingsForm = new AppSettingsForm();
+                    settingsForm.ShowDialog();
+                    GetDataFromDb();
+                    #else
+                        Process settingsProcess = new Process();
+                        settingsProcess.StartInfo.FileName=Environment.CurrentDirectory + "\\Settings.exe";
+                        settingsProcess.EnableRaisingEvents = true;
+                        settingsProcess.Exited += (s, e) => { GetDataFromDb(); };
+                        settingsProcess.Start();
+                    #endif
+                }
+                else
+                    Application.Exit();
         }
         #endregion
         #region GenerationMethods // Методы для генерации
@@ -301,8 +343,12 @@ namespace MainProject.Forms
                 }
             }
         }
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void RamemFormClosing(object sender, FormClosingEventArgs e)
         {
+            foreach (Control item in this.Controls)
+            {
+                item.Dispose();
+            }
             this.Dispose();
         }
         #endregion
