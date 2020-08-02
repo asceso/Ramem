@@ -5,6 +5,7 @@ using DevExpress.XtraEditors;
 using SettingsProject.Properties;
 using System;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -139,6 +140,7 @@ namespace SettingsProject.Forms
         private void ToggleSaveButtonEnabled()
         {
             ButtonSaveSettings.Enabled = IsModified.Any(b => b == true) ? true : false;
+            ButtonUpdateDatabase.Enabled = ButtonSaveSettings.Enabled ? false : true;
         }
         private void ToggleCheckConnection()
         {
@@ -194,6 +196,9 @@ namespace SettingsProject.Forms
                 FillSettingsModel();
                 SettingsLogic.SaveConfiguration(Settings);
                 MessageBox.Show("Успешно сохранено", "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ButtonSaveSettings.Enabled = false;
+                ButtonUpdateDatabase.Enabled = true;
+                Settings = SettingsLogic.ReadConfiguration();
                 progressPanel.Hide();
             }
             catch (Exception ex)
@@ -217,6 +222,17 @@ namespace SettingsProject.Forms
                     break;
             }
             progressPanel.Hide();
+        }
+        private void ButtonUpdateDatabase_Click(object sender, EventArgs e)
+        {
+            Process parserProcess = new Process();
+            parserProcess.StartInfo.FileName = Environment.CurrentDirectory + "\\UrlParser.exe";
+            parserProcess.Start();
+            parserProcess.WaitForExit();
+            Process updateProcess = new Process();
+            updateProcess.StartInfo.FileName = Environment.CurrentDirectory + "\\DatabaseTemplateFill.exe";
+            updateProcess.Start();
+            parserProcess.WaitForExit();
         }
         #endregion
     }

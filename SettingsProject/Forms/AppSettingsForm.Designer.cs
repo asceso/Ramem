@@ -33,6 +33,7 @@
             this.ButtonSaveSettings = new DevExpress.XtraEditors.SimpleButton();
             this.SettingsViewPanel = new DevExpress.XtraEditors.PanelControl();
             this.ConnectionPanel = new DevExpress.XtraEditors.PanelControl();
+            this.ButtonUpdateDatabase = new DevExpress.XtraEditors.SimpleButton();
             this.CheckDatabaseImage = new System.Windows.Forms.PictureBox();
             this.DataNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -97,12 +98,13 @@
             this.SettingsViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SettingsViewPanel.Location = new System.Drawing.Point(0, 38);
             this.SettingsViewPanel.Name = "SettingsViewPanel";
-            this.SettingsViewPanel.Size = new System.Drawing.Size(522, 236);
+            this.SettingsViewPanel.Size = new System.Drawing.Size(522, 264);
             this.SettingsViewPanel.TabIndex = 1;
             // 
             // ConnectionPanel
             // 
             this.ConnectionPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.ConnectionPanel.Controls.Add(this.ButtonUpdateDatabase);
             this.ConnectionPanel.Controls.Add(this.CheckDatabaseImage);
             this.ConnectionPanel.Controls.Add(this.DataNameEdit);
             this.ConnectionPanel.Controls.Add(this.labelControl4);
@@ -124,8 +126,20 @@
             this.ConnectionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ConnectionPanel.Location = new System.Drawing.Point(2, 2);
             this.ConnectionPanel.Name = "ConnectionPanel";
-            this.ConnectionPanel.Size = new System.Drawing.Size(518, 211);
+            this.ConnectionPanel.Size = new System.Drawing.Size(518, 230);
             this.ConnectionPanel.TabIndex = 1;
+            // 
+            // ButtonUpdateDatabase
+            // 
+            this.ButtonUpdateDatabase.ImageOptions.Image = global::SettingsProject.Properties.Resources.refreshallpivottable_16x16;
+            this.ButtonUpdateDatabase.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.ButtonUpdateDatabase.ImageOptions.ImageToTextIndent = 10;
+            this.ButtonUpdateDatabase.Location = new System.Drawing.Point(3, 202);
+            this.ButtonUpdateDatabase.Name = "ButtonUpdateDatabase";
+            this.ButtonUpdateDatabase.Size = new System.Drawing.Size(508, 23);
+            this.ButtonUpdateDatabase.TabIndex = 19;
+            this.ButtonUpdateDatabase.Text = "Обновить базу с сайта";
+            this.ButtonUpdateDatabase.Click += new System.EventHandler(this.ButtonUpdateDatabase_Click);
             // 
             // CheckDatabaseImage
             // 
@@ -306,7 +320,7 @@
             this.progressPanel.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.progressPanel.Description = "";
             this.progressPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressPanel.Location = new System.Drawing.Point(2, 219);
+            this.progressPanel.Location = new System.Drawing.Point(2, 247);
             this.progressPanel.LookAndFeel.SkinName = "Office 2016 Colorful";
             this.progressPanel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this.progressPanel.Name = "progressPanel";
@@ -321,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 274);
+            this.ClientSize = new System.Drawing.Size(522, 302);
             this.Controls.Add(this.SettingsViewPanel);
             this.Controls.Add(this.SettingsManagmentPanel);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
@@ -375,5 +389,6 @@
         private DevExpress.XtraEditors.TextEdit DataNameEdit;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.PictureBox CheckDatabaseImage;
+        private DevExpress.XtraEditors.SimpleButton ButtonUpdateDatabase;
     }
 }

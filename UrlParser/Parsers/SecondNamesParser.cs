@@ -12,16 +12,11 @@ namespace UrlParser.Parsers
 {
     class SecondNamesParser
     {
-        #region Fields // Поля
-        List<string> famElements;
-        private List<SecondNameModel> models;
-        string request;
-        bool IsReady = false;
-        #endregion
         #region Parse and Create model // Методы парсинга и создания модели
-        async void Parsing(string url)
+        async void Parsing(string url, string OutputName)
         {
-            famElements = new List<string>();
+            string request = string.Empty;
+            List<string> famElements = new List<string>();
             HttpClient client = new HttpClient();
             HttpResponseMessage httpResponse = await client.GetAsync(url);
             if (httpResponse.StatusCode == HttpStatusCode.OK)
@@ -40,12 +35,11 @@ namespace UrlParser.Parsers
                     famElements.Add(dd[i].TextContent);
                 }
             }
-            IsReady = true;
+            CreatingModels(OutputName, famElements);
         }
-        void CreatingModels(string OutputName)
+        void CreatingModels(string OutputName, List<string> famElements)
         {
-            Console.WriteLine($"Creating Json..{OutputName}");
-            models = new List<SecondNameModel>();
+            List<SecondNameModel> models = new List<SecondNameModel>();
             for (int i = 0; i < famElements.Count; i += 3)
             {
                 models.Add(new SecondNameModel { SecondNameValue = famElements[i] });
@@ -59,7 +53,7 @@ namespace UrlParser.Parsers
                 {
                     string json = JsonConvert.SerializeObject(models, Formatting.Indented);
                     sw.WriteLine(json);
-                    Console.WriteLine("model created.");
+                    Console.WriteLine($"{OutputName} model created.");
                 }
             }
             catch (Exception ex)
@@ -72,11 +66,8 @@ namespace UrlParser.Parsers
         #region Run parsing // Запуск парсера
         public void GetParsed(string url, string OutputName)
         {
-            IsReady = false;
             Console.WriteLine($"Start parsing url: {url}");
-            Parsing(url);
-            while (!IsReady) ;
-            CreatingModels(OutputName);
+            Parsing(url, OutputName);
         }
         #endregion
     }

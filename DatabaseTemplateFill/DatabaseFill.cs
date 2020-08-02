@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DatabaseTemplateFill
 {
@@ -34,7 +35,7 @@ namespace DatabaseTemplateFill
         /// <summary>
         /// Чтение файлов из папки Output
         /// </summary>
-        public void ReadSource()
+        public async Task ReadSourceAsync()
         {
             Console.WriteLine("Reading Json...");
             int counter = 0;
@@ -63,9 +64,9 @@ namespace DatabaseTemplateFill
                         });
                         counter++;
                     }
-                    db.SaveChanges();
-                    Console.WriteLine($"{counter} FirstNames added to Database");
+                    await db.SaveChangesAsync();
                 }
+                Console.WriteLine($"{counter} FirstNames added to Database");
                 counter = 0;
             }
             catch (Exception ex)
@@ -91,9 +92,8 @@ namespace DatabaseTemplateFill
                     });
                     counter++;
                 }
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 Console.WriteLine($"{counter} SecondNames added to Database");
-                counter = 0;
             }
             catch (Exception ex)
             {

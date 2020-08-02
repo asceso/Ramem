@@ -26,13 +26,8 @@ namespace MainProject.Forms
         #region Loading Form and data // Загрузка формы и данных из БД
         public RamemForm()
         {
-            Settings = SettingsLogic.ReadConfiguration();
-            string conString = $"Data Source={Settings.ConnectionString.DataSource}" +
-            $"AttachDbFilename = {Settings.ConnectionString.AttachDbFilename}" +
-            $"Integrated Security = {Settings.ConnectionString.IntegratedSecurity}";
             InitializeComponent();
             LoadIndicator.Show();
-            db = new DataContext(conString);
             Thread getData = new Thread(GetDataFromDb);
             try
             {
@@ -47,6 +42,11 @@ namespace MainProject.Forms
         {
             try
             {
+                Settings = SettingsLogic.ReadConfiguration();
+                string conString = $"Data Source={Settings.ConnectionString.DataSource}" +
+                $"AttachDbFilename = {Settings.ConnectionString.AttachDbFilename}" +
+                $"Integrated Security = {Settings.ConnectionString.IntegratedSecurity}";
+                db = new DataContext(conString);
                 firstNamesFromDb.AddRange(db.FirstNames);
                 secondNamesFromDb.AddRange(db.SecondNames);
                 if (firstNamesFromDb.Count==0 || secondNamesFromDb.Count==0)

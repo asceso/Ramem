@@ -97,6 +97,14 @@
       <Project>{64729421-7DC1-4D82-ADE4-6E3CF5BC461E}</Project>
       <Name>BusinesLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseTemplateFill\DatabaseTemplateFill.csproj">
+      <Project>{7367a0f8-b6f2-438d-9000-e538b505ae68}</Project>
+      <Name>DatabaseTemplateFill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UrlParser\UrlParser.csproj">
+      <Project>{d436620b-e11d-401e-a302-72ac434a3bc1}</Project>
+      <Name>UrlParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RandomSettings.ico" />
@@ -109,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apply_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refreshallpivottable_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

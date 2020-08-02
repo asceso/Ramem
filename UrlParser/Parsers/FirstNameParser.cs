@@ -12,16 +12,11 @@ namespace UrlParser.Parsers
 {
     class FirstNameParser
     {
-        #region Fields // Поля
-        List<string> table;
-        List<FirstNameModel> models;
-        string request;
-        bool IsReady = false;
-        #endregion
         #region Parse and Create model // Методы парсинга и создания модели
-        async void Parsing(string url)
+        async void Parsing(string url, bool isMale, string OutputName)
         {
-            table = new List<string>();
+            string request = string.Empty;
+            List<string> table = new List<string>();
             HttpClient client = new HttpClient();
             HttpResponseMessage httpResponse = await client.GetAsync(url);
             if (httpResponse.StatusCode == HttpStatusCode.OK)
@@ -42,12 +37,11 @@ namespace UrlParser.Parsers
                     table.Add(dd[i].InnerHtml);
                 }
             }
-            IsReady = true;
+            CreatingModels(isMale, OutputName, table);
         }
-        void CreatingModels(bool isMale,string OutputName)
+        void CreatingModels(bool isMale,string OutputName,List<string> table)
         {
-            Console.WriteLine($"Creating Json..{OutputName}");
-            models = new List<FirstNameModel>();
+            List<FirstNameModel> models = new List<FirstNameModel>();
             for (int i = 0; i < table.Count; i+=3)
             {
                 if (table[i].Contains(';') || table[i].Contains('(') || table[i].Contains(')'))
@@ -67,7 +61,7 @@ namespace UrlParser.Parsers
                 {
                     string json = JsonConvert.SerializeObject(models, Formatting.Indented);
                     sw.WriteLine(json);
-                    Console.WriteLine("model created.");
+                    Console.WriteLine($"{OutputName} model created.");
                 }
             }
             catch (Exception ex)
@@ -80,11 +74,8 @@ namespace UrlParser.Parsers
         #region Run parsing // Запуск парсера
         public void GetParsed(string url,bool isMale,string OutputName)
         {
-            IsReady = false;
             Console.WriteLine($"Start parsing url: {url}");
-            Parsing(url);
-            while (!IsReady) ;
-            CreatingModels(isMale,OutputName);
+            Parsing(url, isMale, OutputName);
         }
         #endregion
     }

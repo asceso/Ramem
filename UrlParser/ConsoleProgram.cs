@@ -66,7 +66,7 @@ namespace UrlParser
             secondNames.GetParsed(@"https://wiki-linki.ru/Page/108504", "SecondNames.json");
             #endregion
             //Sucess
-            Console.WriteLine("Parsed success press any key to exit");
+            //Console.WriteLine("Parsed success press any key to exit");
             Console.ReadKey();
         }
     }
