@@ -56,7 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExecuteFill.cs" />
+    <Compile Include="DatabaseFill.cs" />
+    <Compile Include="ConsoleProgram.cs" />
     <Compile Include="Models\FirstNameModel.cs" />
     <Compile Include="Models\SecondNameModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

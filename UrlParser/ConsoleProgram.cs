@@ -3,11 +3,12 @@ using UrlParser.Parsers;
 
 namespace UrlParser
 {
-    class Program
+    class ConsoleProgram
     {
         static void Main(string[] args)
         {
             FirstNameParser firstNames = new FirstNameParser();
+            SecondNamesParser secondNames = new SecondNamesParser();
             #region MaleNames
             firstNames.GetParsed(@"https://abvgdee.ru/imena/muzhskie/na-bukvu-a", true, "FirstNamesMaleA.json");
             firstNames.GetParsed(@"https://abvgdee.ru/imena/muzhskie/na-bukvu-b", true, "FirstNamesMaleB.json");
@@ -61,10 +62,9 @@ namespace UrlParser
             firstNames.GetParsed(@"https://abvgdee.ru/imena/zhenskie/na-bukvu-yu", false, "FirstNamesFemaleYU.json");
             firstNames.GetParsed(@"https://abvgdee.ru/imena/zhenskie/na-bukvu-ya", false, "FirstNamesFemaleYA.json");
             #endregion
-
-            SecondNamesParser secondNames = new SecondNamesParser();
+            #region SecondNames
             secondNames.GetParsed(@"https://wiki-linki.ru/Page/108504", "SecondNames.json");
-
+            #endregion
             //Sucess
             Console.WriteLine("Parsed success press any key to exit");
             Console.ReadKey();

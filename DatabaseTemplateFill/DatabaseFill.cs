@@ -1,4 +1,5 @@
 ﻿using BusinesLogic.LogicClasses;
+using BusinesLogic.LogicInterfaces;
 using BusinesLogic.LogicModels;
 using DatabaseCreating.Entities;
 using DatabaseTemplateFill.Models;
@@ -10,39 +11,34 @@ using System.Linq;
 
 namespace DatabaseTemplateFill
 {
-    class ExecuteFill
+    class DatabaseFill : ISettingsInterface
     {
         #region Fields // Поля
         DataContext db;
         List<FirstNameModel> firstNames = new List<FirstNameModel>();
         List<SecondNameModel> secondNames = new List<SecondNameModel>();
-        ApplicationSettingsModel settings = SettingsLogic.ReadConfiguration();
+        public ApplicationSettingsModel Settings { get; set; }
+        string ConnectionStringProperty;
         #endregion
-
-        #region Ctor // Конструктор класса и метод Main
-        static void Main(string[] args)
+        #region Ctor // Конструктор класса
+        public DatabaseFill()
         {
-            ExecuteFill execute = new ExecuteFill();
-        }
-        public ExecuteFill()
-        {
-            string conString = $"Data Source={settings.ConnectionString.DataSource}" +
-            $"AttachDbFilename = {settings.ConnectionString.AttachDbFilename}" +
-            $"Integrated Security = {settings.ConnectionString.IntegratedSecurity}";
-            db = new DataContext(conString);
-            System.Console.WriteLine("Reading Json...");
-            ReadSource();
+            Settings = SettingsLogic.ReadConfiguration();
+            ConnectionStringProperty = $"Data Source={Settings.ConnectionString.DataSource}" +
+            $"AttachDbFilename = {Settings.ConnectionString.AttachDbFilename}" +
+            $"Integrated Security = {Settings.ConnectionString.IntegratedSecurity}";
+            db = new DataContext(ConnectionStringProperty);
         }
         #endregion
-
+        #region ProgramBody // Тело программы
         /// <summary>
         /// Чтение файлов из папки Output
         /// </summary>
-        private void ReadSource()
+        public void ReadSource()
         {
+            Console.WriteLine("Reading Json...");
             int counter = 0;
             string buffer;
-
             //FirstNames
             try
             {
@@ -52,7 +48,7 @@ namespace DatabaseTemplateFill
                     using (StreamReader sr = new StreamReader(file))
                     {
                         buffer = sr.ReadToEnd();
-                        Console.WriteLine($"Received {file.Replace(Environment.CurrentDirectory,"")}.");
+                        Console.WriteLine($"Received {file.Replace(Environment.CurrentDirectory, "")}.");
                     }
                     firstNames.AddRange(JsonConvert.DeserializeObject<FirstNameModel[]>(buffer));
                     foreach (FirstNameModel item in firstNames)
@@ -76,7 +72,6 @@ namespace DatabaseTemplateFill
             {
                 Console.WriteLine(ex.Message);
             }
-
             //SecondNames
             try
             {
@@ -104,10 +99,10 @@ namespace DatabaseTemplateFill
             {
                 Console.WriteLine(ex.Message);
             }
-
             //Complete
             Console.WriteLine("Operation is succes press any key to continue");
             Console.ReadKey();
         }
+        #endregion
     }
 }
