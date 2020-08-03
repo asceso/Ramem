@@ -142,6 +142,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\AccessData.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Data.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

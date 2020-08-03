@@ -15,8 +15,15 @@ namespace SettingsProject.Forms
 {
     public partial class AppSettingsForm : XtraForm , ISettingsInterface
     {
+        //todo:Разобраться с MS Access
         #region Fields
+        //string str = @"Provider=Microsoft.Jet.OLEDB.4.0;
+        //Data Source=D:\Programming\Repository\Ramem\MainProject\Data\AccessData.mdb;
+        //Persist Security Info=True";
         public ApplicationSettingsModel Settings { get; set; }
+        string[] DataSourceList = new string[] { "(LocalDB)\\MSSQLLocalDB;", ".\\SQLEXPRESS;", "MS Access Database;" };
+        string[] SqlList = new string[] { "System.Data.SqlClient" };
+        string[] AccessList = new string[] { "Microsoft.Jet.OLEDB.4.0" };
         bool[] IsModified;
         enum Modify
         {
@@ -36,6 +43,8 @@ namespace SettingsProject.Forms
             int ModifyCount = Enum.GetNames(typeof(Modify)).Length;
             IsModified = new bool[ModifyCount];
             InitializeComponent();
+            DataProviderComboEdit.DataSource = SqlList;
+            DataSourceComboEdit.DataSource = DataSourceList;
             progressPanel.Show();
             Settings = SettingsLogic.ReadConfiguration();
             FillSettingsFields();
@@ -88,16 +97,19 @@ namespace SettingsProject.Forms
         }
         private void SelectedIndexChangedEvent(object sender, EventArgs e)
         {
-            ComboBoxEdit edit = sender as ComboBoxEdit;
-            switch (edit.Name)
+            if(sender is System.Windows.Forms.ComboBox box)
+            switch (box.Name)
             {
                 case nameof(DataSourceComboEdit):
-                        IsModified[(int)Modify.DataSource] = (edit.SelectedItem.ToString() != Settings.ConnectionString.DataSource) ? true : false;
+                    {
+                        IsModified[(int)Modify.DataSource] = (box.SelectedItem.ToString() != Settings.ConnectionString.DataSource) ? true : false;
+                        DataProviderComboEdit.DataSource = box.SelectedItem.ToString().Equals("MS Access Database") ? AccessList : SqlList;
+                    }
                     break;
-                case nameof(DataProviderComboEdit):
-                        IsModified[(int)Modify.ProviderName] = (edit.SelectedItem.ToString() != Settings.ConnectionString.ProviderName) ? true : false;
-                    break;
-            }
+                    case nameof(DataProviderComboEdit):
+                        IsModified[(int)Modify.ProviderName] = (box.SelectedItem.ToString() != Settings.ConnectionString.ProviderName) ? true : false;
+                        break;
+                }
             ToggleSaveButtonEnabled();
         }
         private void EditValueChangedEvent(object sender, EventArgs e)
@@ -152,7 +164,7 @@ namespace SettingsProject.Forms
         private void FillSettingsFields()
         {
             ConnectionNameEdit.Text = Settings.ConnectionString.ConnectionName;
-            DataSourceComboEdit.SelectedItem = Settings.ConnectionString.DataSource;
+            DataSourceComboEdit.SelectedIndex = DataSourceComboEdit.Items.IndexOf(Settings.ConnectionString.DataSource);
             string DataName = Settings.ConnectionString.AttachDbFilename
                 .Remove(0, Settings.ConnectionString.AttachDbFilename.LastIndexOf("\\")+1)
                 .Replace(".mdf;",string.Empty);
@@ -161,7 +173,7 @@ namespace SettingsProject.Forms
             DataPathEdit.Text = DataPath;
             DataNameEdit.Text = DataName;
             CheckeditAuth.Checked = Settings.ConnectionString.IntegratedSecurity;
-            DataProviderComboEdit.SelectedItem = Settings.ConnectionString.ProviderName;
+            DataProviderComboEdit.SelectedIndex = DataProviderComboEdit.Items.IndexOf(Settings.ConnectionString.ProviderName);
         }
         private void FillSettingsModel()
         {

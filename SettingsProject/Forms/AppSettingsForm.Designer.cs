@@ -38,13 +38,11 @@
             this.DataNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.ButtonTestConnection = new DevExpress.XtraEditors.SimpleButton();
-            this.DataProviderComboEdit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.PasswordEdit = new DevExpress.XtraEditors.TextEdit();
             this.LoginEdit = new DevExpress.XtraEditors.TextEdit();
             this.CheckeditAuth = new DevExpress.XtraEditors.CheckEdit();
             this.ButtonOpenDirectoryDialog = new DevExpress.XtraEditors.SimpleButton();
             this.DataPathEdit = new DevExpress.XtraEditors.TextEdit();
-            this.DataSourceComboEdit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.ConnectionNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -53,6 +51,8 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.progressPanel = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.DataProviderComboEdit = new System.Windows.Forms.ComboBox();
+            this.DataSourceComboEdit = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsManagmentPanel)).BeginInit();
             this.SettingsManagmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsViewPanel)).BeginInit();
@@ -61,12 +61,10 @@
             this.ConnectionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckDatabaseImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataNameEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataProviderComboEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LoginEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckeditAuth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataPathEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSourceComboEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionNameEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +85,7 @@
             this.ButtonSaveSettings.Location = new System.Drawing.Point(3, 7);
             this.ButtonSaveSettings.Name = "ButtonSaveSettings";
             this.ButtonSaveSettings.Size = new System.Drawing.Size(151, 23);
-            this.ButtonSaveSettings.TabIndex = 0;
+            this.ButtonSaveSettings.TabIndex = 1;
             this.ButtonSaveSettings.Text = "Сохранить настройки";
             this.ButtonSaveSettings.Click += new System.EventHandler(this.ButtonSaveSettings_Click);
             // 
@@ -104,18 +102,18 @@
             // ConnectionPanel
             // 
             this.ConnectionPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.ConnectionPanel.Controls.Add(this.DataSourceComboEdit);
             this.ConnectionPanel.Controls.Add(this.ButtonUpdateDatabase);
+            this.ConnectionPanel.Controls.Add(this.DataProviderComboEdit);
             this.ConnectionPanel.Controls.Add(this.CheckDatabaseImage);
             this.ConnectionPanel.Controls.Add(this.DataNameEdit);
             this.ConnectionPanel.Controls.Add(this.labelControl4);
             this.ConnectionPanel.Controls.Add(this.ButtonTestConnection);
-            this.ConnectionPanel.Controls.Add(this.DataProviderComboEdit);
             this.ConnectionPanel.Controls.Add(this.PasswordEdit);
             this.ConnectionPanel.Controls.Add(this.LoginEdit);
             this.ConnectionPanel.Controls.Add(this.CheckeditAuth);
             this.ConnectionPanel.Controls.Add(this.ButtonOpenDirectoryDialog);
             this.ConnectionPanel.Controls.Add(this.DataPathEdit);
-            this.ConnectionPanel.Controls.Add(this.DataSourceComboEdit);
             this.ConnectionPanel.Controls.Add(this.ConnectionNameEdit);
             this.ConnectionPanel.Controls.Add(this.labelControl7);
             this.ConnectionPanel.Controls.Add(this.labelControl6);
@@ -126,7 +124,7 @@
             this.ConnectionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ConnectionPanel.Location = new System.Drawing.Point(2, 2);
             this.ConnectionPanel.Name = "ConnectionPanel";
-            this.ConnectionPanel.Size = new System.Drawing.Size(518, 230);
+            this.ConnectionPanel.Size = new System.Drawing.Size(518, 239);
             this.ConnectionPanel.TabIndex = 1;
             // 
             // ButtonUpdateDatabase
@@ -134,10 +132,10 @@
             this.ButtonUpdateDatabase.ImageOptions.Image = global::SettingsProject.Properties.Resources.refreshallpivottable_16x16;
             this.ButtonUpdateDatabase.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.ButtonUpdateDatabase.ImageOptions.ImageToTextIndent = 10;
-            this.ButtonUpdateDatabase.Location = new System.Drawing.Point(3, 202);
+            this.ButtonUpdateDatabase.Location = new System.Drawing.Point(3, 205);
             this.ButtonUpdateDatabase.Name = "ButtonUpdateDatabase";
             this.ButtonUpdateDatabase.Size = new System.Drawing.Size(508, 23);
-            this.ButtonUpdateDatabase.TabIndex = 19;
+            this.ButtonUpdateDatabase.TabIndex = 12;
             this.ButtonUpdateDatabase.Text = "Обновить базу с сайта";
             this.ButtonUpdateDatabase.Click += new System.EventHandler(this.ButtonUpdateDatabase_Click);
             // 
@@ -156,7 +154,7 @@
             this.DataNameEdit.Location = new System.Drawing.Point(101, 78);
             this.DataNameEdit.Name = "DataNameEdit";
             this.DataNameEdit.Size = new System.Drawing.Size(384, 20);
-            this.DataNameEdit.TabIndex = 17;
+            this.DataNameEdit.TabIndex = 6;
             this.DataNameEdit.EditValueChanged += new System.EventHandler(this.EditValueChangedEvent);
             // 
             // labelControl4
@@ -172,25 +170,12 @@
             this.ButtonTestConnection.ImageOptions.Image = global::SettingsProject.Properties.Resources.wifi_16x16;
             this.ButtonTestConnection.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.ButtonTestConnection.ImageOptions.ImageToTextIndent = 10;
-            this.ButtonTestConnection.Location = new System.Drawing.Point(5, 173);
+            this.ButtonTestConnection.Location = new System.Drawing.Point(5, 176);
             this.ButtonTestConnection.Name = "ButtonTestConnection";
             this.ButtonTestConnection.Size = new System.Drawing.Size(508, 23);
-            this.ButtonTestConnection.TabIndex = 15;
+            this.ButtonTestConnection.TabIndex = 11;
             this.ButtonTestConnection.Text = "Проверить соединение";
             this.ButtonTestConnection.Click += new System.EventHandler(this.ButtonTestConnection_Click);
-            // 
-            // DataProviderComboEdit
-            // 
-            this.DataProviderComboEdit.Location = new System.Drawing.Point(109, 147);
-            this.DataProviderComboEdit.Name = "DataProviderComboEdit";
-            this.DataProviderComboEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DataProviderComboEdit.Properties.Items.AddRange(new object[] {
-            "System.Data.SqlClient"});
-            this.DataProviderComboEdit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.DataProviderComboEdit.Size = new System.Drawing.Size(404, 20);
-            this.DataProviderComboEdit.TabIndex = 14;
-            this.DataProviderComboEdit.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChangedEvent);
             // 
             // PasswordEdit
             // 
@@ -198,15 +183,16 @@
             this.PasswordEdit.Name = "PasswordEdit";
             this.PasswordEdit.Properties.UseSystemPasswordChar = true;
             this.PasswordEdit.Size = new System.Drawing.Size(211, 20);
-            this.PasswordEdit.TabIndex = 13;
+            this.PasswordEdit.TabIndex = 9;
             this.PasswordEdit.EditValueChanged += new System.EventHandler(this.EditValueChangedEvent);
             // 
             // LoginEdit
             // 
+            this.LoginEdit.EditValue = "Admin";
             this.LoginEdit.Location = new System.Drawing.Point(41, 124);
             this.LoginEdit.Name = "LoginEdit";
             this.LoginEdit.Size = new System.Drawing.Size(211, 20);
-            this.LoginEdit.TabIndex = 12;
+            this.LoginEdit.TabIndex = 8;
             this.LoginEdit.EditValueChanged += new System.EventHandler(this.EditValueChangedEvent);
             // 
             // CheckeditAuth
@@ -219,7 +205,7 @@
             this.CheckeditAuth.Properties.CheckBoxOptions.SvgColorUnchecked = System.Drawing.Color.DimGray;
             this.CheckeditAuth.Properties.CheckBoxOptions.SvgImageSize = new System.Drawing.Size(25, 20);
             this.CheckeditAuth.Size = new System.Drawing.Size(508, 24);
-            this.CheckeditAuth.TabIndex = 11;
+            this.CheckeditAuth.TabIndex = 7;
             this.CheckeditAuth.CheckedChanged += new System.EventHandler(this.CheckeditAuth_CheckedChanged);
             // 
             // ButtonOpenDirectoryDialog
@@ -229,7 +215,7 @@
             this.ButtonOpenDirectoryDialog.Name = "ButtonOpenDirectoryDialog";
             this.ButtonOpenDirectoryDialog.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.ButtonOpenDirectoryDialog.Size = new System.Drawing.Size(20, 20);
-            this.ButtonOpenDirectoryDialog.TabIndex = 10;
+            this.ButtonOpenDirectoryDialog.TabIndex = 5;
             this.ButtonOpenDirectoryDialog.ToolTip = "Выбор папки для хранения БД";
             this.ButtonOpenDirectoryDialog.Click += new System.EventHandler(this.ButtonOpenDirectoryDialog_Click);
             // 
@@ -238,34 +224,20 @@
             this.DataPathEdit.Location = new System.Drawing.Point(111, 52);
             this.DataPathEdit.Name = "DataPathEdit";
             this.DataPathEdit.Size = new System.Drawing.Size(374, 20);
-            this.DataPathEdit.TabIndex = 9;
+            this.DataPathEdit.TabIndex = 4;
             this.DataPathEdit.EditValueChanged += new System.EventHandler(this.EditValueChangedEvent);
-            // 
-            // DataSourceComboEdit
-            // 
-            this.DataSourceComboEdit.Location = new System.Drawing.Point(101, 27);
-            this.DataSourceComboEdit.Name = "DataSourceComboEdit";
-            this.DataSourceComboEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DataSourceComboEdit.Properties.Items.AddRange(new object[] {
-            "(LocalDB)\\MSSQLLocalDB;",
-            ".\\SQLEXPRESS;"});
-            this.DataSourceComboEdit.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.DataSourceComboEdit.Size = new System.Drawing.Size(412, 20);
-            this.DataSourceComboEdit.TabIndex = 8;
-            this.DataSourceComboEdit.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChangedEvent);
             // 
             // ConnectionNameEdit
             // 
             this.ConnectionNameEdit.Location = new System.Drawing.Point(122, 2);
             this.ConnectionNameEdit.Name = "ConnectionNameEdit";
             this.ConnectionNameEdit.Size = new System.Drawing.Size(391, 20);
-            this.ConnectionNameEdit.TabIndex = 7;
+            this.ConnectionNameEdit.TabIndex = 2;
             this.ConnectionNameEdit.EditValueChanged += new System.EventHandler(this.EditValueChangedEvent);
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(5, 149);
+            this.labelControl7.Location = new System.Drawing.Point(5, 153);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(98, 13);
             this.labelControl7.TabIndex = 6;
@@ -331,6 +303,28 @@
             this.progressPanel.Visible = false;
             this.progressPanel.WaitAnimationType = DevExpress.Utils.Animation.WaitingAnimatorType.Bar;
             // 
+            // DataProviderComboEdit
+            // 
+            this.DataProviderComboEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.DataProviderComboEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DataProviderComboEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.DataProviderComboEdit.FormattingEnabled = true;
+            this.DataProviderComboEdit.Location = new System.Drawing.Point(109, 150);
+            this.DataProviderComboEdit.Name = "DataProviderComboEdit";
+            this.DataProviderComboEdit.Size = new System.Drawing.Size(404, 21);
+            this.DataProviderComboEdit.TabIndex = 10;
+            // 
+            // DataSourceComboEdit
+            // 
+            this.DataSourceComboEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.DataSourceComboEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DataSourceComboEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.DataSourceComboEdit.FormattingEnabled = true;
+            this.DataSourceComboEdit.Location = new System.Drawing.Point(101, 27);
+            this.DataSourceComboEdit.Name = "DataSourceComboEdit";
+            this.DataSourceComboEdit.Size = new System.Drawing.Size(412, 21);
+            this.DataSourceComboEdit.TabIndex = 3;
+            // 
             // AppSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,12 +347,10 @@
             this.ConnectionPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckDatabaseImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataNameEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataProviderComboEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LoginEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckeditAuth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataPathEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSourceComboEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionNameEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -376,12 +368,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton ButtonOpenDirectoryDialog;
         private DevExpress.XtraEditors.TextEdit DataPathEdit;
-        private DevExpress.XtraEditors.ComboBoxEdit DataSourceComboEdit;
         private DevExpress.XtraEditors.TextEdit ConnectionNameEdit;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ComboBoxEdit DataProviderComboEdit;
         private DevExpress.XtraEditors.TextEdit LoginEdit;
         private DevExpress.XtraEditors.CheckEdit CheckeditAuth;
         private DevExpress.XtraEditors.TextEdit PasswordEdit;
@@ -390,5 +380,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.PictureBox CheckDatabaseImage;
         private DevExpress.XtraEditors.SimpleButton ButtonUpdateDatabase;
+        private System.Windows.Forms.ComboBox DataProviderComboEdit;
+        private System.Windows.Forms.ComboBox DataSourceComboEdit;
     }
 }
